@@ -7,6 +7,11 @@
 1. Morpheus: Dreams
    - First kingdoms, scripts and money 5,000 years ago
    - Polytheistic religions
+      - The Origin of Adam & Eve: How Schizophrenia shaped humanity
+      - Psychosis, delusion, paranoia, control by otherwordly forces, auditory hallucinations, passivity
+      - Some of these are issues to look for in Harari's book
+      - Afterall, Abram "heard" Gods voice
+      - Now Judeo-Christian values are the world order!
    - `No mention of emergence of monotheistic religion`
 2. Hades: Metaphysics
    - Cognitive revolution 70,000 years ago
