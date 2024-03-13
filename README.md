@@ -8,6 +8,8 @@
    - What "should" be foundational 1st & 3rd harmonic
    - Makes you feel like you're 17th or 19th harmonics
    - Das icht Freud, Tyler Perry, Woody Allen, etc
+   - Coen Brothers Protagonist in "A Serious Man"
+   - He's a decent man like Job, close to the fundamentals, but only gets `negative vibes` from distant harmonics
 2. Pentatonic
 3. Diatonic
 4. Chromatic
