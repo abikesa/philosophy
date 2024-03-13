@@ -13,13 +13,17 @@
 4. Chromatic
 5. Temperament
 6. Expression
-   - Withdraw: Self
+   - Withdraw: `Self`
       - Freud and navel-gazing/brooding following skills-challenge mismatch
          - Rick Dalton of Tarantino's "Once Upon a Time in Hollywood"
-         - Sexy-evil Hamlet, or is it Edmund from King Lear? 
-   - Engage: Neighbor
-      - Marx and amplitude of united whiners or `SAG`
-   - Impose: God's Will
+         - Sexy-evil Hamlet, or is it Edmund from King Lear?
+         - Quenten like Mirabella withdrew into Hollywood's 1960s film as a child to excape his unstructured life
+         - Tyler Perry says pretty much though his was not to Hollywood but the black community (his aunt, church, etc)
+         - Woody withdrew into a more intellectual journey that found its voice in Freudian vocabulary
+         - Coen brothers had a secure mid-western up-bringing but the clash between orthodox judaism and mid-western america provides a rich tension
+   - Engage: `Neighbor`
+      - Marx and amplitude of united whiners or SAG
+   - Impose: `God's Will`
       - Nietzsche & implications of God's death
       - Tarantino will always have characters who bully, are anarchist (Mr. Blonde), etc.
          - He will not offer sufficient backstory in case you wish to `cherche la femme` to figure-out the "will-to-hide"
