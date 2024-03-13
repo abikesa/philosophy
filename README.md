@@ -20,4 +20,6 @@
    - Engage: Neighbor
       - Marx and amplitude of united whiners or `SAG`
    - Impose: God's Will
-      - Nietzsche & implications of God's death 
+      - Nietzsche & implications of God's death
+      - Tarantino will always have characters who bully, are anarchist (Mr. Blonde), etc.
+         - He will not offer sufficient backstory in case you wish to `cherche la femme` to figure-out the "will-to-hide"
