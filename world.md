@@ -10,7 +10,8 @@
 # Individual
 - Myself (Matt 22:37-40)
    - Hidest
-   - Withdraw  
+   - Withdraw
+   - Dude (i.e., tumbling tumble weed)
    - Epicurus
    - Prudence (i.e., Agency Insuffiicent)
    - Mismatch
@@ -20,6 +21,7 @@
 - Neighbor
    - Whinest
    - Engage
+   - Weak (i.e., good who findeth [conspiracy](https://www.npr.org/2023/07/13/1187272781/rfk-jr-kennedy-conspiracy-theories-social-media-presidential-campaign) about the evil-strong engaging)
    - Marx
    - Determinism (i.e., Structural)
    - Victory
@@ -29,6 +31,7 @@
 - God's will
    - Tamest
    - Impose
+   - Strong (i.e., evil who commandeth)
    - Nietzsche
    - Cosmic (i.e., Toss, Odds, Gods, Quantum)
    - Ragnarok
