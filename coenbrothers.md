@@ -11,9 +11,9 @@
 4. Chromatic
 5. Temperament
 6. Expression
-   - Individual world:: Personal agency `or prudent withdrawal` (Epicurus)
-   - Social world:: Structural determinism (Marx)
-   - Existential world:: Randomness of cosmos (Nietzsche)
+   - Individual/`Romantic` world:: Personal agency `or prudent withdrawal`, A redemptive arch where necessary (Epicurus)
+   - Social/`Classical` world:: Structural determinism (Marx)
+   - Existential/`Modern` world:: Randomness of cosmos (Nietzsche)
       - Think: Chiguhr's coin toss in No country for old men
       - *Receive with [simplicity](https://www.npr.org/2009/10/02/113429323/a-serious-man-at-sea-in-a-tragically-absurd-world#:~:text=A%20Serious%20Man%20opens%20with,going%20to%20lose%2C%20lose%20gracefully.) whatever happens to you - [Rashi](https://en.wikipedia.org/wiki/Rashi)*
 #
