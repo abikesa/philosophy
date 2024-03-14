@@ -30,6 +30,9 @@
       - Tarantino will always have characters who bully, are anarchist (Mr. Blonde), etc.
          - He will not offer sufficient backstory in case you wish to `cherche la femme` to figure-out the "will-to-hide"
       - Even though the dude wishes to mind his own business (withdrawal), divine providence (impose) sucks him into the affairs of society (engage)
+         - To be sure The Dude's withdrawal is facilitated by white russian & weed
+         - His engagement is evident in the Bowling tourament and his dues to the landlord
+         - But his fucking lady friend is divine providence, as is the China man who micturated upon his rag (and so his room is not longer "tied together"); it would be impossible to follow this tumbling tumbleweed of a protagonist without the plot-device of the "rug", which lends some coherence to the film. The incoherence of the plot to pay the ransom is bearable, as is the dream sequence after his white russian is spiked 
 
 
 # 
