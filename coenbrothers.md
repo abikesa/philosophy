@@ -5,13 +5,13 @@
                                          3. Diatonic
 
 1. Root
-   - Individual world as harmonic with familial root
+   - Familial world as harmonic with familial root
 2. Pentatonic
 3. Diatonic
 4. Chromatic
 5. Temperament
 6. Expression
-   - Familial world:: Individual agency `or prudent withdrawal` (Epicurus)
+   - Individual world:: Personal agency `or prudent withdrawal` (Epicurus)
    - Social world:: Structural determinism (Marx)
    - Existential world:: Randomness of cosmos (Nietzsche)
       - Think: Chiguhr's coin toss in No country for old men
