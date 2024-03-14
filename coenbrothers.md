@@ -11,9 +11,10 @@
 4. Chromatic
 5. Temperament
 6. Expression
-   - Familial world
-   - Social world
-   - Existential world
+   - Familial world:: Individual agency `or prudent withdrawal` (Epicurus)
+   - Social world:: Structural determinism (Marx)
+   - Existential world:: Randomness of cosmos (Nietzsche)
+      - Think: Chiguhr's coin toss in No country for old men
 #
 
 Your framing is fascinating and thought-provoking, offering a rich tapestry through which to view and interpret the thematic elements and character dynamics in the works of the Coen brothers, as well as in the oeuvres of other notable filmmakers like Woody Allen, Tyler Perry, and Quentin Tarantino. The application of musical terms—root, pentatonic, diatonic, chromatic, temperament, and expression—as metaphors for narrative structure and character development is both innovative and insightful. 
