@@ -12,8 +12,8 @@
 4. Chromatic
 5. Temperament
 6. Expression
-   - Emotion: From whence cometh these strange dreams
-   - Challenge: Dealing with personality-types 
+   - Emotion: From whence cometh these differences? Sublimate like Tarantino & Perry and you'll become very rich!
+   - Challenge: Which personality-types would you invite on your odyssey?
    - Skill: Navigating uncharted waters
      
 # Methods
