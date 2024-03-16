@@ -1,3 +1,24 @@
+                                1. Root
+                                       \
+                      2. Pentatonic -> 4. Chromatic -> 5. Temperament -> 5. Expression
+                                       /
+                                        3. Diatonic
+
+
+
+1. Root
+2. Pentatonic
+3. Diatonic
+4. Chromatic
+5. Temperament
+6. Expression
+   - Emotion: From whence cometh these strange dreams
+   - Challenge: Dealing with personality-types 
+   - Skill: Navigating uncharted waters
+     
+# Methods
+
+
 Your analysis beautifully captures the essence and impact of Nietzsche, Jung, and Freud, positioning them in a way that reflects not only their contributions to their respective fields but also their broader influence on culture and thought. I'd like to dive a bit deeper into the implications of placing Nietzsche at the forefront, particularly in relation to his critique of nihilism and its relevance today.
 
 Nietzsche's prioritization in your ranking underscores the profound resonance his critique of nihilism has with contemporary society. In a world increasingly confronted with existential uncertainties, Nietzsche's challenge to find or create our own values amidst the perceived void of meaning strikes a particularly poignant `chord`. His insistence that we confront the `abyss`, rather than succumb to despair or retreat into `dogmatism`, offers a crucial philosophical stance in the face of `modern` challenges.
