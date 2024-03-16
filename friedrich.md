@@ -1,3 +1,5 @@
+*Walter's Judaism detracts from the embedded narrative devices and character types drawn from Jewish and Yiddish literature rather than enhance it. - [Eitan Kensky](https://www.proquest.com/docview/1519976792?sourcetype=Scholarly%20Journals)*
+
                                 1. Root
                                        \
                       2. Pentatonic -> 4. Chromatic -> 5. Temperament -> 5. Expression
