@@ -22,6 +22,7 @@
          - Quenten like Mirabella withdrew into Hollywood's 1960s film as a child to excape his unstructured life
          - Tyler Perry says pretty much though his was not to Hollywood but the black community (his aunt, church, etc)
          - Woody withdrew into a more intellectual journey that found its voice in Freudian vocabulary
+            - I'd never want to belong to a club which had someone like me as a member. And thats the whole joke of my relationship with women. - Annie Hall. Woody has mummy issues and has `only dated Goy's` 
          - Coen brothers had a secure mid-western up-bringing but the clash between orthodox judaism and mid-western america provides a rich tension
    - Engage: `Neighbor/Society`
       - Marx and amplitude of united whiners or SAG
