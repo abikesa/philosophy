@@ -19,3 +19,5 @@
 ### Apollo 5, 6
 - Flow: Overflow, Cup Runneth Over, Excess Strength Only Proof of Strength, Leadership
 - Growth: [Accomplishments](https://abikesa.github.io/sociology/), Exceeding Norms
+
+<iframe src="algorithms.MP4" width="100%" height="600px" style="borders:none"></iframe>
