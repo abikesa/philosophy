@@ -29,9 +29,9 @@ alt: Two people, a woman and a man, waving next to a banner that says - welcome.
 
 We hope these resources will help you navigate, understand and be part of our community.
 
-<iframe src="https://abikesa.github.io/music/_downloads/270ce1dc688a64dec497dfe81d0966aa/mozart.pdf"></iframe>
-<iframe src="https://abikesa.github.io/music/_downloads/a207eb5446aa5d171a0ba97791498e49/bach.pdf"></iframe>
-<iframe src="https://abikesa.github.io/music/_downloads/f1747777a15dcc72b5adef6cfcae8d8e/handel.pdf"></iframe>
+<iframe src="https://abikesa.github.io/music/_downloads/270ce1dc688a64dec497dfe81d0966aa/mozart.pdf" width="100%" height="600" style="borders:none"></iframe>
+<iframe src="https://abikesa.github.io/music/_downloads/a207eb5446aa5d171a0ba97791498e49/bach.pdf" width="100%" height="600" style="borders:none"></iframe>
+<iframe src="https://abikesa.github.io/music/_downloads/f1747777a15dcc72b5adef6cfcae8d8e/handel.pdf" width="100%" height="600" style="borders:none"></iframe>
 
 ###### 1
 So life is will to power. It's just that simple. Now, if you have some philosophy or worldview that is not in line with this, all you're going to do is whine and complain about injustice, about evil, and stuff like that. But at the bottom, life is will to power. It's just the simplest thing. Those that have power will will it and will get their will. They'll impose their values on you. And so you'll be resentful. And if you're resentful, that's when you invent all the metaphysical fictions of justice and unfairness and the truth and the final judgment. You know, that's it.
