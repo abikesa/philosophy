@@ -2,7 +2,7 @@
 
 ```sh
 cd ~/documents/memos/jam/kitabo/ensi
-pip install -r requirements.txt && jupyter-book build .
+pip install -r local/kitabo/ensi/requirements.txt && jb build local/kitabo/ensi
 cp -r foreword/app/* _build/html/foreword/app
 cd ~/documents/chords/
 new/jbb_https.sh

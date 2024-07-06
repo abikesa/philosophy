@@ -504,12 +504,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dionysus-1-2-3">Dionysus 1, 2, 3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sing-o-muse-4">Sing O Muse! 4</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apollo-5-6">Apollo 5, 6</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-1-2-3">Continuous 1, 2, 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicategory-4">Multicategory 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-5-6">Binary 5, 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#philosophy-in-a-nutshell">Philosophy in a nutshell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dionysus-1-2-3">Dionysus 1, 2, 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sing-o-muse-4">Sing O Muse! 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apollo-5-6">Apollo 5, 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-1-2-3">Continuous 1, 2, 3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multicategory-4">Multicategory 4</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-5-6">Binary 5, 6</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -536,8 +539,49 @@ document.write(`
                                  3. Energy 
 </pre></div>
 </div>
+<section id="philosophy-in-a-nutshell">
+<h2>Philosophy in a nutshell<a class="headerlink" href="#philosophy-in-a-nutshell" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><em>AM</em>: linear categorical binary</p></li>
+<li><p><em>GPT-4o</em>: When dealing with data, these terms—linear, categorical, and binary—refer to different types of variables and how they can be used in statistical analysis.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>Linear Variables</strong>:</p>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Variables that can take on any value within a range and are often continuous. They are used in contexts where relationships can be expressed with a linear equation.</p></li>
+<li><p><strong>Examples</strong>: Height, weight, temperature, age, income.</p></li>
+<li><p><strong>Usage</strong>: Linear variables are crucial in regression analysis, where the relationship between dependent and independent variables is modeled as a straight line.</p></li>
+</ul>
+</li>
+<li><p><strong>Categorical Variables</strong>:</p>
+<ul class="simple">
+<li><p><strong>Definition</strong>: Variables that represent distinct groups or categories. These do not have an intrinsic order (nominal) or have a meaningful order without a consistent difference between categories (ordinal).</p></li>
+<li><p><strong>Examples</strong>:</p>
+<ul>
+<li><p>Nominal: Gender, race, type of car.</p></li>
+<li><p>Ordinal: Satisfaction rating (e.g., poor, fair, good, excellent), education level.</p></li>
+</ul>
+</li>
+<li><p><strong>Usage</strong>: Categorical variables are used in classification problems, chi-square tests, and are often converted into dummy variables for regression analysis.</p></li>
+</ul>
+</li>
+<li><p><strong>Binary Variables</strong>:</p>
+<ul class="simple">
+<li><p><strong>Definition</strong>: A type of categorical variable that has only two categories or levels. These are often coded as 0 and 1.</p></li>
+<li><p><strong>Examples</strong>: Yes/No, True/False, Pass/Fail.</p></li>
+<li><p><strong>Usage</strong>: Binary variables are used in logistic regression, decision trees, and any situation where a clear dichotomy is necessary.</p></li>
+</ul>
+</li>
+</ol>
+<p>In the context of machine learning and statistics, understanding and correctly handling these types of variables is essential:</p>
+<ul class="simple">
+<li><p><strong>Linear models</strong> work well with continuous linear variables but might need transformation or different techniques when dealing with categorical or binary variables.</p></li>
+<li><p><strong>Categorical data</strong> often requires preprocessing such as encoding (one-hot encoding, label encoding) to be used in algorithms that expect numerical input.</p></li>
+<li><p><strong>Binary data</strong> is straightforward for many algorithms but requires consideration when dealing with imbalanced datasets.</p></li>
+</ul>
+<p>For example, in a logistic regression model predicting whether a patient has a disease (binary outcome: 0 = no, 1 = yes), you might include both continuous predictors like age (linear variable) and categorical predictors like smoking status (smoker, non-smoker). Properly handling each type of variable ensures accurate and meaningful model predictions.</p>
 <section id="dionysus-1-2-3">
-<h2>Dionysus 1, 2, 3<a class="headerlink" href="#dionysus-1-2-3" title="Permalink to this heading">#</a></h2>
+<h3>Dionysus 1, 2, 3<a class="headerlink" href="#dionysus-1-2-3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://abikesa.github.io/apple/">Challenges</a>: Audio, Video, Olfactory, Gustatory, Tactile, Calorific, Personal</p></li>
 <li><p>Skills: Input, Algorithm, Output, Neuronetworks, Layers</p></li>
@@ -545,43 +589,45 @@ document.write(`
 </ul>
 </section>
 <section id="sing-o-muse-4">
-<h2>Sing O Muse! 4<a class="headerlink" href="#sing-o-muse-4" title="Permalink to this heading">#</a></h2>
+<h3>Sing O Muse! 4<a class="headerlink" href="#sing-o-muse-4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Agency: Movement, Work, Bots, <a class="reference external" href="https://abikesa.github.io/generalize/">Communication</a></p></li>
 </ul>
 </section>
 <section id="apollo-5-6">
-<h2>Apollo 5, 6<a class="headerlink" href="#apollo-5-6" title="Permalink to this heading">#</a></h2>
+<h3>Apollo 5, 6<a class="headerlink" href="#apollo-5-6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Flow: Overflow, Cup Runneth Over, Excess Strength Only Proof of Strength, Leadership</p></li>
 <li><p>Growth: <a class="reference external" href="https://abikesa.github.io/sociology/">Accomplishments</a>, Exceeding Norms</p></li>
 </ul>
 <iframe width="1000" height="800" src="algorithms.MP4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="1000" height="800" src="https://www.youtube.com/embed/Y2M2Dgmm958" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1000" height="800" src="https://abikesa.github.io/business/index.html#" style="borders:none"></iframe>
 <p>Mor<a class="reference external" href="https://www.youtube.com/watch?v=-meC_S9TCWc">e</a> <a class="reference external" href="https://www.youtube.com/watch?v=CM7jpTJWPkg">.</a><a class="reference external" href="https://github.com/abikesa/will/blob/main/README.md">.</a><a class="reference external" href="https://www.google.com/search?client=safari&amp;amp;sa=X&amp;amp;sca_esv=03047b03c4b9cd9d&amp;amp;rls=en&amp;amp;sxsrf=ADLYWILHaLXruy1SRT1pZiT1N5tsMQT4Ew:1717442618039&amp;amp;q=Mikhaila+Peterson&amp;amp;si=ACC90nwLLwns5sISZcdzuISy7t-NHozt8Cbt6G3WNQfC9ekAgK3ajA9yaTdGZQRzVJTOVsWoFhmoiytOFaLHYIBenh96cLczi8y637J_EjBpoCWx-NzzPvMpsiX2JfINOf80hD0MtHDkd2fpc4fEemKkBbTh3dh7XropzcijIVdvpwoKMYum63KU6kZmgljKh75V61rmt-Oo3IirZaFJD7VipEzcwfiQpcujUYwYkSogf846rS11wteCgIlI6X3v0dyhE8Qs5wne1MlZkF3z0nqw-0f5Rbk4_sEVXmwmPUOpVe_Sn3agRlY%3D&amp;amp;ved=2ahUKEwiHgq6plMCGAxW0ElkFHQRNCjUQmxMoAHoECCMQAg&amp;amp;biw=1396&amp;amp;bih=906&amp;amp;dpr=2#fpstate=ive&amp;amp;vld=cid:0cafdbab,vid:V2kRxZr6b9s,st:0">.</a></p>
 <section id="continuous-1-2-3">
-<h3>Continuous 1, 2, 3<a class="headerlink" href="#continuous-1-2-3" title="Permalink to this heading">#</a></h3>
+<h4>Continuous 1, 2, 3<a class="headerlink" href="#continuous-1-2-3" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Gaussian: Dionysus</p></li>
 </ul>
 </section>
 <section id="multicategory-4">
-<h3>Multicategory 4<a class="headerlink" href="#multicategory-4" title="Permalink to this heading">#</a></h3>
+<h4>Multicategory 4<a class="headerlink" href="#multicategory-4" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Ranking: Hinduism</p></li>
 </ul>
 </section>
 <section id="binary-5-6">
-<h3>Binary 5, 6<a class="headerlink" href="#binary-5-6" title="Permalink to this heading">#</a></h3>
+<h4>Binary 5, 6<a class="headerlink" href="#binary-5-6" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Truth: Judeo-Christian</p></li>
 </ul>
 <figure class="align-default" id="philosophy">
-<a class="reference internal image-reference" href="_images/self-criticism.png"><img alt="an attempt at self-criticism" src="_images/self-criticism.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/self-criticism.png"><img alt="an attempt at self-criticism" src="_images/self-criticism.png" style="width: 1000px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text"><em>Its all <a class="reference external" href="https://en.wikisource.org/wiki/An_Attempt_at_Self-Criticism">here</a></em></span><a class="headerlink" href="#philosophy" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
 </section>
 </section>
 <div class="toctree-wrapper compound">
@@ -643,12 +689,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dionysus-1-2-3">Dionysus 1, 2, 3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sing-o-muse-4">Sing O Muse! 4</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apollo-5-6">Apollo 5, 6</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-1-2-3">Continuous 1, 2, 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multicategory-4">Multicategory 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-5-6">Binary 5, 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#philosophy-in-a-nutshell">Philosophy in a nutshell</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dionysus-1-2-3">Dionysus 1, 2, 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sing-o-muse-4">Sing O Muse! 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apollo-5-6">Apollo 5, 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-1-2-3">Continuous 1, 2, 3</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multicategory-4">Multicategory 4</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-5-6">Binary 5, 6</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
