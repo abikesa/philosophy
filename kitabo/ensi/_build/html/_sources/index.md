@@ -16,7 +16,7 @@
 - _GPT-4o_: When dealing with data, these terms—linear, categorical, and binary—refer to different types of variables and how they can be used in statistical analysis.
 
 ### **Linear Variables** 1, 2, 3 (Observations: `encode`)
-   - **Definition**: Variables that can take on any value within a range and are often continuous. They are used in contexts where relationships can be expressed with a linear equation.
+   - **Definition**: Variables that can take on [any value](https://www.gutenberg.org/cache/epub/52319/pg52319-images.html) (strong and well-constituted men digest anything) within a range and are often continuous. They are used in contexts where relationships can be expressed with a linear equation.
    - **Examples**: Height, weight, temperature, age, income.
    - **Usage**: Linear variables are crucial in regression analysis, where the relationship between dependent and independent variables is modeled as a straight line.
 
@@ -26,11 +26,13 @@
      - Nominal: Gender, race, type of car.
      - Ordinal: Satisfaction rating (e.g., poor, fair, good, excellent), education level.
    - **Usage**: Categorical variables are used in classification problems, chi-square tests, and are often converted into dummy variables for regression analysis.
+   - **Caveat**: When lines are drawn, [red](https://en.wikipedia.org/wiki/Red_line_(phrase)#:~:text=The%20red%20line%2C%20or%20%22to,point%20or%20degree%20considered%20safe.%22) or in the sand, it is as arbitrary as any division of things that are intrinsically continuous in nature. To borrow Nietzsche's colorful language, this is the basis of "constipation": inability to digest some things.
 
  ### **Binary Variables** 5, 6 (Top: `decode`)
    - **Definition**: A type of categorical variable that has only two categories or levels. These are often coded as 0 and 1.
    - **Examples**: Yes/No, True/False, Pass/Fail.
    - **Usage**: Binary variables are used in logistic regression, decision trees, and any situation where a clear dichotomy is necessary.
+   - **Caveat**: Binary categories are often the "collapsed" categories, simply because the most ancient algorithm (i.e., human brain) depends upon only 1s and 0s
 
 In the context of machine learning and statistics, understanding and correctly handling these types of variables is essential:
 
