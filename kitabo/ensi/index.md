@@ -15,19 +15,19 @@
 - _AM_: linear categorical binary
 - _GPT-4o_: When dealing with data, these terms—linear, categorical, and binary—refer to different types of variables and how they can be used in statistical analysis.
 
-### **Linear Variables** 1, 2, 3 (Observations)
+### **Linear Variables** 1, 2, 3 (Observations: `encode`)
    - **Definition**: Variables that can take on any value within a range and are often continuous. They are used in contexts where relationships can be expressed with a linear equation.
    - **Examples**: Height, weight, temperature, age, income.
    - **Usage**: Linear variables are crucial in regression analysis, where the relationship between dependent and independent variables is modeled as a straight line.
 
-### **Categorical Variables** 4 (Ranking)
+### **Categorical Variables** 4 (Ranking: `code`)
    - **Definition**: Variables that represent distinct groups or categories. These do not have an intrinsic order (nominal) or have a meaningful order without a consistent difference between categories (ordinal).
    - **Examples**: 
      - Nominal: Gender, race, type of car.
      - Ordinal: Satisfaction rating (e.g., poor, fair, good, excellent), education level.
    - **Usage**: Categorical variables are used in classification problems, chi-square tests, and are often converted into dummy variables for regression analysis.
 
- ### **Binary Variables** 5, 6 (Top`)
+ ### **Binary Variables** 5, 6 (Top: `decode`)
    - **Definition**: A type of categorical variable that has only two categories or levels. These are often coded as 0 and 1.
    - **Examples**: Yes/No, True/False, Pass/Fail.
    - **Usage**: Binary variables are used in logistic regression, decision trees, and any situation where a clear dichotomy is necessary.
