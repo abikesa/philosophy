@@ -406,8 +406,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
+  <div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
 <span class="k">clear</span> 
 <span class="k">rm</span> code<span class="m">.</span>png    
@@ -450,14 +455,116 @@ import delimited s0_nondonor<span class="m">.</span>csv,<span class="k"> clear</
 </pre></div>
 </div>
 </div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph5.svg saved as SVG format
 file /Users/apollo/.stata_kernel_cache/graph5.pdf saved as PDF format
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p><img alt="" src="../_images/code.png" /></p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>import delimited beta_coefficients_58<span class="m">.</span>csv,<span class="k"> clear</span> 
+<span class="k">list</span> variable
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(encoding automatically selected: ISO-8859-1)
+(2 vars, 58 obs)
+
+
+     +-----------------------------+
+     |                    variable |
+     |-----------------------------|
+  1. |                 diabetes_No |
+  2. |                diabetes_Yes |
+  3. |                  insulin_No |
+  4. |                 insulin_Yes |
+  5. |                 dia_pill_No |
+     |-----------------------------|
+  6. |                dia_pill_Yes |
+  7. |             hypertension_No |
+  8. |            hypertension_Yes |
+  9. |     hypertension_Don&#39;t_Know |
+ 10. |                 hbp_pill_No |
+     |-----------------------------|
+ 11. |                hbp_pill_Yes |
+ 12. |                    smoke_No |
+ 13. |                   smoke_Yes |
+ 14. |       income_adjusted_&lt;5000 |
+ 15. |   income_adjusted_5000-9999 |
+     |-----------------------------|
+ 16. | income_adjusted_10000-14999 |
+ 17. | income_adjusted_15000-19999 |
+ 18. | income_adjusted_20000-24999 |
+ 19. | income_adjusted_25000-34999 |
+ 20. | income_adjusted_35000-44999 |
+     |-----------------------------|
+ 21. | income_adjusted_45000-54999 |
+ 22. | income_adjusted_55000-64999 |
+ 23. | income_adjusted_65000-74999 |
+ 24. |      income_adjusted_&gt;20000 |
+ 25. |                      &lt;20000 |
+     |-----------------------------|
+ 26. |          income_adjusted_14 |
+ 27. |          income_adjusted_15 |
+ 28. |           Refused to answer |
+ 29. |                  don&#39;t know |
+ 30. |               gender_Female |
+     |-----------------------------|
+ 31. |                 gender_Male |
+ 32. |                  race_White |
+ 33. |       race_Mexican_American |
+ 34. |         race_Other_Hispanic |
+ 35. |     race_Non-Hispanic_Black |
+     |-----------------------------|
+ 36. |                  race_Other |
+ 37. |                     hs_Good |
+ 38. |                hs_Excellent |
+ 39. |                hs_Very_Good |
+ 40. |                     hs_Fair |
+     |-----------------------------|
+ 41. |                     hs_Poor |
+ 42. |                     Refused |
+ 43. |                           8 |
+ 44. |                  don&#39;t know |
+ 45. |            education (none) |
+     |-----------------------------|
+ 46. |                          k8 |
+ 47. |            Some High_School |
+ 48. |      High_School_Equivalent |
+ 49. |                   Associate |
+ 50. |             College or more |
+     |-----------------------------|
+ 51. |                     refused |
+ 52. |                       age_c |
+ 53. |                    bpxsar_c |
+ 54. |                    bpxdar_c |
+ 55. |                bmi_centered |
+     |-----------------------------|
+ 56. |                      egfr_c |
+ 57. |                      uacr_c |
+ 58. |                        ghb  |
+     +-----------------------------+
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 
     <script type="text/x-thebe-config">
     {
