@@ -53,7 +53,7 @@ refused,3.321700
 age_c,1.077703
 bpxsar_c,1.004693
 bpxdar_c,0.996766
-bmi_centered,1.000008
+bmi_c,1.000008
 egfr_c,0.997733
 uacr_c,1.000005
-ghb ,1.000002
+ghb_c,1.000002
