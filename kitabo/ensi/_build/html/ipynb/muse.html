@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Muse &#8212; Template</title>
+    <title>Muse &#8212; The Gambler</title>
   
   
   
@@ -162,8 +162,8 @@
       
     
     
-    <img src="https://github.com/jhufena/jhufena.github.io/blob/main/png/hub_and_spoke.jpg?raw=true" class="logo__image only-light" alt="Template - Home"/>
-    <script>document.write(`<img src="https://github.com/jhufena/jhufena.github.io/blob/main/png/hub_and_spoke.jpg?raw=true" class="logo__image only-dark" alt="Template - Home"/>`);</script>
+    <img src="https://facts.net/wp-content/uploads/2023/07/16-facts-about-roulette-1690805803.jpg" class="logo__image only-light" alt="The Gambler - Home"/>
+    <script>document.write(`<img src="https://facts.net/wp-content/uploads/2023/07/16-facts-about-roulette-1690805803.jpg" class="logo__image only-dark" alt="The Gambler - Home"/>`);</script>
   
   
 </a></div>
@@ -202,10 +202,10 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../act3/act2.html">Deployment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_1.html">GitHub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_2.html">4.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_2.html">Tradition</a></li>
 
 
-<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_3.html">4.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_3.html">Nietzsche</a></li>
 
 </ul>
 </details></li>
@@ -429,7 +429,7 @@ document.write(`
 <section id="mu-timing">
 <h2><span class="math notranslate nohighlight">\(\mu\)</span>, Timing<a class="headerlink" href="#mu-timing" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(t)\)</span> Phonetics</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(Hz)\)</span> Phonetics</p></li>
 </ul>
 <div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
@@ -475,6 +475,16 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4186</span><span class="p">)</span>  <span class="c1"># Limit to the highest frequency on a piano (C8)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
+<span class="c1"># Shading the region for normal speaking range (approximately 85 Hz to 255 Hz)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightpink&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Annotate the shaded region</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Normal Speaking Range (500 Hz - 2000 Hz)&#39;</span><span class="p">,</span>
+             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">2500</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;-&gt;&quot;</span><span class="p">),</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
 <span class="c1"># Remove top and right spines</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -499,12 +509,12 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<img alt="../_images/b9950b25170d4ecc98e1a4241757c81e1caf9eba5649a5db9f7c6c6f469799cc.png" src="../_images/b9950b25170d4ecc98e1a4241757c81e1caf9eba5649a5db9f7c6c6f469799cc.png" />
+<img alt="../_images/c0265f9458eb5f77bc370fdf863d0c424999cc21732d60a3d126fd5da7d63078.png" src="../_images/c0265f9458eb5f77bc370fdf863d0c424999cc21732d60a3d126fd5da7d63078.png" />
 </div>
 </details>
 </div>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> Temperament <span id="id2"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id25" title="Friedrich Nietzsche. Human, All Too Human: A Book for Free Spirits, Part II. Project Gutenberg, 1886. Aphorism 140, &quot;Dancing in Chains&quot; discusses the self-imposed constraints in Greek artistry and how these constraints are creatively transformed into perceived ease. URL: https://www.gutenberg.org/cache/epub/37841/pg37841-images.html.">1</a></sup></span> <span id="id3"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id26" title="John Updike. Rabbit, Run. Knopf, New York, 1960. &quot;Human was the music, natural the static&quot; appears in this novel, reflecting the theme of human experience contrasted with the chaotic nature of life.">50</a></sup></span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S(t)\)</span> Temperament <span id="id2"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id34" title="Friedrich Nietzsche. Human, All Too Human: A Book for Free Spirits, Part II. Project Gutenberg, 1886. Aphorism 140, &quot;Dancing in Chains&quot; discusses the self-imposed constraints in Greek artistry and how these constraints are creatively transformed into perceived ease. URL: https://www.gutenberg.org/cache/epub/37841/pg37841-images.html.">3</a></sup></span> <span id="id3"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id35" title="John Updike. Rabbit, Run. Knopf, New York, 1960. &quot;Human was the music, natural the static&quot; appears in this novel, reflecting the theme of human experience contrasted with the chaotic nature of life.">62</a></sup></span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h(t)\)</span> Scales</p></li>
 </ul>
 </section>
@@ -704,7 +714,7 @@ document.write(`
 <li><p>Scales: Quirk (African)</p></li>
 <li><p>Modes: Irish Dance (Dorian)</p></li>
 <li><p>NexToken: Epic (Cantus)</p></li>
-<li><p>Emotion: Dies Irae <span id="id4"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id23" title="Karl William Pamp Jenkins. Karl jenkins. 2024. Accessed: 2024-08-11. URL: https://en.wikipedia.org/wiki/Karl_Jenkins.">56</a></sup></span></p></li>
+<li><p>Emotion: Dies Irae <span id="id4"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id32" title="Karl William Pamp Jenkins. Karl jenkins. 2024. Accessed: 2024-08-11. URL: https://en.wikipedia.org/wiki/Karl_Jenkins.">68</a></sup></span></p></li>
 </ul>
 </Details>
 </aside>
