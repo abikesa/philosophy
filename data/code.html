@@ -406,7 +406,28 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_hide-input tag_hide-output docutils container">
+  <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                1. Input
+                        \
+       2. Processing -&gt; 4. Art -&gt; 5. Science -&gt; 6. Morality
+                        /
+                        3. Output -&gt; Feedback
+</pre></div>
+</div>
+ <iframe 
+    src="https://www.youtube.com/embed/TrPlaCG2btk" 
+    title="YouTube video player" 
+    style="width: 100%; height: 500px"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/blanche.png"><img alt="../_images/blanche.png" src="../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-text"><em>Life &amp; cybernetics</em>. The “Arts” encode aesthetics, religion, theology, and spirituality of mankind throughout history &amp; have the distinguishing feature of <code class="docutils literal notranslate"><span class="pre">reverence</span></code>. It is the irreverent sciences that make <code class="docutils literal notranslate"><span class="pre">inferences</span></code> strictly by testing the present against historical data. Morality seeks <code class="docutils literal notranslate"><span class="pre">deliverance</span></code> from the evil deeds of history, present, and future. It borrows from science by interpreting then critizing history &amp; from the arts by reinterpreting everything afresh “as if experienced first hand.But its a third layer of abstraction, whereas art is the first level of abstraction that <code class="docutils literal notranslate"><span class="pre">reharms</span></code> life as experienced</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="cell tag_hide-input tag_hide-output docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
@@ -415,37 +436,40 @@ document.write(`
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
 <span class="k">clear</span> 
-<span class="k">rm</span> code<span class="m">.</span>png    
-<span class="c1">//1. beta-coefficients</span>
-import delimited b_nondonor<span class="m">.</span>csv,<span class="k"> clear</span> 
+<span class="k">rm</span> code<span class="m">.</span>png   
+<span class="k">global</span> repo <span class="s">&quot;https://raw.githubusercontent.com/abikesa/philosophy/main/kitabo/ensi/data/&quot;</span> 
+<span class="k">if</span> <span class="m">0</span> {
+<span class="c1">//1. data-analysis: cox-regression (rdc restricted-access)</span>
+<span class="k">stcox</span> var1<span class="m">-58</span>, basesurv(s0_nondonor)
+<span class="k">matrix</span> b=<span class="nf">e</span>(b)
+<span class="k">mkmat</span> beta1<span class="m">-58</span>,<span class="k"> matrix</span>(b_nondonor)
+<span class="k">keep</span> _t s0_nondonor
+export delimited s0_nondonor<span class="m">.</span>csv,<span class="k"> replace</span> 
+}
+<span class="c1">//2. processing: beta-coefficients (zero disclosure-risk)</span>
+import delimited <span class="s">&quot;</span><span class="vg">${repo}</span><span class="s">b_nondonor.csv&quot;</span>,<span class="k"> clear</span> 
 <span class="k">local</span> i = <span class="m">1</span>
 <span class="k">foreach var</span> of<span class="k"> varlist</span> <span class="o">*</span> {   <span class="c1">// this loops over all variables in the dataset</span>
 <span class="k">    rename</span> <span class="nv">`var&#39;</span><span class="k"> var</span><span class="nv">`i&#39;</span>
 <span class="k">    local</span> i = <span class="nv">`i&#39;</span> <span class="o">+</span> <span class="m">1</span>
 }
 <span class="k">mkmat</span> var1<span class="o">-</span>var58,<span class="k"> matrix</span>(beta)
-
-<span class="c1">//2. scenario-vector</span>
-import delimited SV_nondonor<span class="m">.</span>csv,<span class="k"> clear</span> 
+<span class="c1">//3. flexing: scenario-vector (demonstration-only; app for eui)</span>
+import delimited <span class="s">&quot;</span><span class="vg">${repo}</span><span class="s">SV_nondonor.csv&quot;</span>,<span class="k"> clear</span> 
 <span class="k">local</span> i = <span class="m">1</span>
 <span class="k">foreach var</span> of<span class="k"> varlist</span> <span class="o">*</span> {   <span class="c1">// this loops over all variables in the dataset</span>
 <span class="k">    rename</span> <span class="nv">`var&#39;</span><span class="k"> var</span><span class="nv">`i&#39;</span>
 <span class="k">    local</span> i = <span class="nv">`i&#39;</span> <span class="o">+</span> <span class="m">1</span>
 }
 <span class="k">mkmat</span> var1<span class="o">-</span>var58,<span class="k"> matrix</span>(SV)
-<span class="c1">// matrix list beta</span>
-
-<span class="c1">//3. base-case</span>
-import delimited s0_nondonor<span class="m">.</span>csv,<span class="k"> clear</span> 
+<span class="c1">//4. art: base-case (embodies, realizes, transcends usual stuff)</span>
+import delimited <span class="s">&quot;</span><span class="vg">${repo}</span><span class="s">s0_nondonor.csv&quot;</span>,<span class="k"> clear</span> 
 <span class="k">l in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
 <span class="k">g</span> f0 = (<span class="m">1</span> <span class="o">-</span> s0_nondonor)<span class="o">*</span><span class="m">100</span>
-<span class="c1">// line f0 _t, sort connect(step step) ylab(0(20)100)</span>
-
-<span class="c1">//4. logHR</span>
+<span class="c1">//5. science: logHR-se.logHR (decodes everything, communicates to fellows)</span>
 <span class="k">matrix</span> logHR=beta<span class="o">*</span>SV&#39;
 <span class="k">matrix list</span> logHR
-
-<span class="c1">//5. KM</span>
+<span class="c1">//6. morality: threshold, draw-the-line (all &#39;bout dre for the eui)</span>
 <span class="k">g</span> f1 = f0<span class="o">*</span><span class="nf">exp</span>(logHR[<span class="m">1</span>,<span class="m">1</span>])
 <span class="k">line</span> f0 f1 _t, <span class="cs">///</span>
 <span class="k">   sort</span> connect(step step) ylab(<span class="m">0</span>(<span class="m">20</span>)<span class="m">100</span>) <span class="cs">///</span>
@@ -462,8 +486,8 @@ import delimited s0_nondonor<span class="m">.</span>csv,<span class="k"> clear</
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph5.svg saved as SVG format
-file /Users/apollo/.stata_kernel_cache/graph5.pdf saved as PDF format
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file /Users/apollo/.stata_kernel_cache/graph1.svg saved as SVG format
+file /Users/apollo/.stata_kernel_cache/graph1.pdf saved as PDF format
 </pre></div>
 </div>
 </div>
@@ -472,7 +496,7 @@ file /Users/apollo/.stata_kernel_cache/graph5.pdf saved as PDF format
 <p><img alt="" src="../_images/code.png" /></p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>import delimited beta_coefficients_58<span class="m">.</span>csv,<span class="k"> clear</span> 
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>import delimited <span class="s">&quot;</span><span class="vg">${repo}</span><span class="s">beta_coefficients_58.csv&quot;</span>,<span class="k"> clear</span> 
 <span class="k">list</span> variable
 </pre></div>
 </div>
