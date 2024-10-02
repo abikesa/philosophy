@@ -182,7 +182,8 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../act1/part1.html">Part 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../act1/chapter1.html">Mortality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../act1/chapter2.html">ESRD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../act1/chapter3.html">Frailty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../act1/chapter3.html">Chapter 3</a></li>
+
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../act2/part2.html">Part 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -261,6 +262,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/abikesa/template/main?urlpath=tree/book/website/act3/act1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -269,7 +301,7 @@
       
       
       
-      <li><a href="../_sources/act3/act1.md" target="_blank"
+      <li><a href="../_sources/act3/act1.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,7 +311,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -340,7 +372,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -356,6 +390,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-prisoner-s-dilemma">Basic: Prisoner’s Dilemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-repeated-prisoner-s-dilemma">Intermediate: Repeated Prisoner’s Dilemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-multi-player-game-simulation">Advanced: Multi-Player Game Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown">Breakdown:</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -367,6 +412,164 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="act-1">
 <h1>Act 1<a class="headerlink" href="#act-1" title="Permalink to this heading">#</a></h1>
+<p>Here’s some Python code that demonstrates three levels of game theory simulations: basic, intermediate, and advanced. Each step builds on the previous one, increasing complexity and adding layers of strategy and interaction.</p>
+<section id="basic-prisoner-s-dilemma">
+<h2>Basic: Prisoner’s Dilemma<a class="headerlink" href="#basic-prisoner-s-dilemma" title="Permalink to this heading">#</a></h2>
+<p>A simple 2-player Prisoner’s Dilemma where each player can either cooperate (C) or defect (D). The payoff matrix is as follows:</p>
+<ul class="simple">
+<li><p>If both cooperate: (3, 3)</p></li>
+<li><p>If both defect: (1, 1)</p></li>
+<li><p>If one defects and the other cooperates: (5, 0) for the defector and (0, 5) for the cooperator.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">prisoners_dilemma</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
+    <span class="c1"># Payoff matrix: rows = player1&#39;s choices, columns = player2&#39;s choices</span>
+    <span class="n">payoff_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span> <span class="p">[(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]])</span>
+    
+    <span class="c1"># Return the payoff for the choices</span>
+    <span class="k">return</span> <span class="n">payoff_matrix</span><span class="p">[</span><span class="n">player1</span><span class="p">][</span><span class="n">player2</span><span class="p">]</span>
+
+<span class="c1"># 0 = cooperate, 1 = defect</span>
+<span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Cooperate</span>
+<span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Defect</span>
+
+<span class="n">payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">,</span> <span class="n">player2_choice</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Player 1 payoff: </span><span class="si">{</span><span class="n">payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Player 2 payoff: </span><span class="si">{</span><span class="n">payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Player 1 payoff: 0, Player 2 payoff: 5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="intermediate-repeated-prisoner-s-dilemma">
+<h2>Intermediate: Repeated Prisoner’s Dilemma<a class="headerlink" href="#intermediate-repeated-prisoner-s-dilemma" title="Permalink to this heading">#</a></h2>
+<p>Now let’s introduce a repeated game scenario, where players play multiple rounds of the Prisoner’s Dilemma and can adjust their strategy based on prior rounds. We simulate a basic “Tit for Tat” strategy, where Player 2 mimics Player 1’s previous move.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeated_dilemma</span><span class="p">(</span><span class="n">rounds</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">player1_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">player2_history</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start by cooperating</span>
+    <span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start by cooperating (Tit-for-Tat)</span>
+    
+    <span class="n">total_payoff_player1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_payoff_player2</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+        <span class="n">payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">,</span> <span class="n">player2_choice</span><span class="p">)</span>
+        
+        <span class="c1"># Update total payoffs</span>
+        <span class="n">total_payoff_player1</span> <span class="o">+=</span> <span class="n">payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">total_payoff_player2</span> <span class="o">+=</span> <span class="n">payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Log choices</span>
+        <span class="n">player1_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">)</span>
+        <span class="n">player2_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player2_choice</span><span class="p">)</span>
+        
+        <span class="c1"># Player 2 follows &quot;Tit for Tat&quot; strategy</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">player2_choice</span> <span class="o">=</span> <span class="n">player1_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Mimic player1&#39;s last choice</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Cooperate initially</span>
+            
+        <span class="c1"># Player 1 randomly defects in later rounds</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">total_payoff_player1</span><span class="p">,</span> <span class="n">total_payoff_player2</span><span class="p">,</span> <span class="n">player1_history</span><span class="p">,</span> <span class="n">player2_history</span>
+
+<span class="n">payoffs</span> <span class="o">=</span> <span class="n">repeated_dilemma</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total payoff for Player 1: </span><span class="si">{</span><span class="n">payoffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Total payoff for Player 2: </span><span class="si">{</span><span class="n">payoffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total payoff for Player 1: 17, Total payoff for Player 2: 12
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-multi-player-game-simulation">
+<h2>Advanced: Multi-Player Game Simulation<a class="headerlink" href="#advanced-multi-player-game-simulation" title="Permalink to this heading">#</a></h2>
+<p>Finally, let’s expand the simulation to a multi-player game where several players choose between cooperation and defection. We also introduce a more complex strategy: “Grim Trigger,” where a player cooperates unless another player defects, in which case they defect for the rest of the game.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multi_player_game</span><span class="p">(</span><span class="n">num_players</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># Initialize choices: all players start by cooperating (0 = cooperate, 1 = defect)</span>
+    <span class="n">player_choices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_players</span><span class="p">,</span> <span class="n">rounds</span><span class="p">))</span>
+    <span class="n">payoffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_players</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">round_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">round_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Apply Grim Trigger strategy</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_players</span><span class="p">):</span>
+                <span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">player_choices</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="p">:</span><span class="n">round_idx</span><span class="p">]:</span>  <span class="c1"># If any defection happened in the past</span>
+                    <span class="n">player_choices</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Defect for the rest of the game</span>
+
+        <span class="c1"># Randomly pick one defector per round to test strategy dynamics</span>
+        <span class="k">if</span> <span class="n">round_idx</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">defector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_players</span><span class="p">)</span>
+            <span class="n">player_choices</span><span class="p">[</span><span class="n">defector</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># Calculate payoffs based on choices in this round</span>
+        <span class="k">for</span> <span class="n">p1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_players</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">p2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_players</span><span class="p">):</span>
+                <span class="n">p1_choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">player_choices</span><span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">])</span>
+                <span class="n">p2_choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">player_choices</span><span class="p">[</span><span class="n">p2</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">])</span>
+                <span class="n">round_payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">p1_choice</span><span class="p">,</span> <span class="n">p2_choice</span><span class="p">)</span>
+                <span class="n">payoffs</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">round_payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">payoffs</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">round_payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">payoffs</span><span class="p">,</span> <span class="n">player_choices</span>
+
+<span class="n">game_results</span> <span class="o">=</span> <span class="n">multi_player_game</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final payoffs for all players: </span><span class="si">{</span><span class="n">game_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final payoffs for all players: [36. 36. 44. 53.]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="breakdown">
+<h2>Breakdown:<a class="headerlink" href="#breakdown" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Basic</strong>: A single round of Prisoner’s Dilemma with two players making isolated choices.</p></li>
+<li><p><strong>Intermediate</strong>: Introduces repeated games and strategies like “Tit for Tat” where players react based on history.</p></li>
+<li><p><strong>Advanced</strong>: Expands the game to multiple players and complex strategies like “Grim Trigger.”</p></li>
+</ol>
+<p>You can modify the number of rounds or players to explore different game theory dynamics.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -425,6 +628,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-prisoner-s-dilemma">Basic: Prisoner’s Dilemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-repeated-prisoner-s-dilemma">Intermediate: Repeated Prisoner’s Dilemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-multi-player-game-simulation">Advanced: Multi-Player Game Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown">Breakdown:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
