@@ -434,6 +434,68 @@ document.write(`
                           3. Type, ε
 </pre></div>
 </div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Creating a simplified directed acyclic graph (DAG) based on the clarified structure</span>
+<span class="n">G_simplified_dag</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Adding nodes</span>
+<span class="n">nodes_simplified</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Games&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Allegory&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Archetype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Stereotype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Prototype&quot;</span><span class="p">,</span>
+    <span class="c1"># &quot;Comical&quot;,</span>
+    <span class="c1"># &quot;Tragical&quot;,</span>
+    <span class="c1"># &quot;Historical&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Adding edges based on the clarified structure</span>
+<span class="n">edges_simplified</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Allegory&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Games&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Archetype&quot;</span><span class="p">,</span> <span class="s2">&quot;Stereotype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Stereotype&quot;</span><span class="p">,</span> <span class="s2">&quot;Prototype&quot;</span><span class="p">),</span>
+    <span class="c1"># (&quot;Prototype&quot;, &quot;Comical&quot;),</span>
+    <span class="c1"># (&quot;Prototype&quot;, &quot;Tragical&quot;),</span>
+    <span class="c1"># (&quot;Prototype&quot;, &quot;Historical&quot;)</span>
+<span class="p">]</span>
+
+<span class="c1"># Adding the nodes and edges to the new simplified DAG</span>
+<span class="n">G_simplified_dag</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes_simplified</span><span class="p">)</span>
+<span class="n">G_simplified_dag</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges_simplified</span><span class="p">)</span>
+
+<span class="c1"># Plotting the simplified DAG</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">pos_simplified</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G_simplified_dag</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G_simplified_dag</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos_simplified</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Archetypal DAG&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/fd2de2e0bc0e0edc3084e1ccd62716e0c2266f6bd789abf66c92dbec1c54536b.png" src="../_images/fd2de2e0bc0e0edc3084e1ccd62716e0c2266f6bd789abf66c92dbec1c54536b.png" />
+</div>
+</div>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../_images/blanche.png"><img alt="../_images/blanche.png" src="../_images/blanche.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>Topographically Identical</em>. Using Python vs. Markdown</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <Details>
     <Summary></Summary>
 <ul class="simple">
@@ -502,10 +564,10 @@ document.write(`
 <section id="framework-based-on-game-theory-and-metaphor">
 <h3>Framework Based on Game Theory and Metaphor:<a class="headerlink" href="#framework-based-on-game-theory-and-metaphor" title="Permalink to this heading">#</a></h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sXQ940YSD2A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="act1/figures/blanche.*"><img alt="act1/figures/blanche.*" src="act1/figures/blanche.*" style="width: 1px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>Miller’s Crossing: Friendship, Character, Ethics</em>. I’m talkin’ about friendship. I’m talkin’ about character. I’m talkin’ about—hell, Leo, I ain’t embarrassed to use the word. I’m talkin’ about ethics. You know I’m a sportin’ man. I like to lay the occasional bet. But I ain’t that sportin’. When I fix a fight—say I pay a three-to-one favorite to throw a goddamned fight—I figure I got the right to expect that fight to go off at three-to-one. But every time I lay in bed with this son of a bitch Bernie Bernbaum, before I know it, the odds is even up. Or worse, I’m bettin’ on the short money. The sheeny knows I like sure things. He’s sellin’ the information I fixed the fight. Out of town money comes pouring in. The odds go straight to hell. I don’t know who he’s sellin’ to—maybe the Los Angeles combine. I don’t know. The point is, Bernie ain’t satisfied with the honest dollar he can make off the vig. He ain’t satisfied with the business I do on his book. He is sellin’ tips on how I bet. And that means part of the payoff that should be riding on my hip is riding on someone else’s. So, back we go to these questions—friendship, character, ethics. So, it’s clear what I’m saying? As mud. It’s gettin’ so a businessman can’t expect no return from a fixed fight. Now, if you can’t trust a fix, what can you trust?</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text"><em>Miller’s Crossing: Friendship, Character, Ethics</em>. I’m talkin’ about friendship. I’m talkin’ about character. I’m talkin’ about—hell, Leo, I ain’t embarrassed to use the word. I’m talkin’ about ethics. You know I’m a sportin’ man. I like to lay the occasional bet. But I ain’t that sportin’. When I fix a fight—say I pay a three-to-one favorite to throw a goddamned fight—I figure I got the right to expect that fight to go off at three-to-one. But every time I lay in bed with this son of a bitch Bernie Bernbaum, before I know it, the odds is even up. Or worse, I’m bettin’ on the short money. The sheeny knows I like sure things. He’s sellin’ the information I fixed the fight. Out of town money comes pouring in. The odds go straight to hell. I don’t know who he’s sellin’ to—maybe the Los Angeles combine. I don’t know. The point is, Bernie ain’t satisfied with the honest dollar he can make off the vig. He ain’t satisfied with the business I do on his book. He is sellin’ tips on how I bet. And that means part of the payoff that should be riding on my hip is riding on someone else’s. So, back we go to these questions—friendship, character, ethics. So, it’s clear what I’m saying? As mud. It’s gettin’ so a businessman can’t expect no return from a fixed fight. Now, if you can’t trust a fix, what can you trust?</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="game-theory-foundation">
@@ -576,10 +638,10 @@ Iterative games reject fixed strategies and equilibria because everything is con
 <ul class="simple">
 <li><p><strong>Visual Art</strong>: Leonardo da Vinci – Leonardo, with his obsession for proportions, numbers, and the golden <code class="docutils literal notranslate"><span class="pre">ratio</span></code> Although the <em>Last Supper</em> has elements of scheming, and his <em>Monalisa</em> is famously ambiguous, most of his work lies in the realm of precise mathematics and engineering. Think the <em>Vitruvian Man</em> or <em>Flying Machine</em>. He stubbornly remained in <em>Paradiso</em> and didn’t bother himself with the messiness of humanity.</p></li>
 </ul>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg/2880px-Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg/2880px-Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg/2880px-Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">In Dante’s <em>Inferno</em>, <code class="docutils literal notranslate"><span class="pre">betrayal</span></code> is reserved for the lowest circle of Hell, where those who have violated the deepest bonds of trust are eternally frozen in ice, farthest from the warmth of divine light. Judas Iscariot, the archetypal betrayer, resides here, much like in Leonardo da Vinci’s <em>The Last Supper</em>, where he is positioned, clutching his silver, as the inevitable betrayer. In our framework, this moment of betrayal represents the descent from cooperative games—the communal harmony that Christ embodies at the table—into adversarial games, where strategy, deception, and ultimately betrayal reign supreme. Of course, da Vinci masterfully balances mathematical precision with profound human drama, positioning it at the <code class="docutils literal notranslate"><span class="pre">intersection</span></code> of divine order and human betrayal. While we’ve categorized him under the mathematics-obsessive, striving for the harmony of <em>Paradiso</em>, the painting itself—particularly Judas’ betrayal—reminds us of the darker realities, much like Dante’s <em>Inferno</em>. It’s a scene where divine proportions and human fallibility collide, showing that even in pursuit of perfect balance, da Vinci was not blind to the chaos beneath. In this sense, our framework may <code class="docutils literal notranslate"><span class="pre">unfairly</span></code> reduce da Vinci to pure geometry, when his art, particularly here, transcends that simplicity by grappling with the tragic betrayals embedded in human nature.</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">In Dante’s <em>Inferno</em>, <code class="docutils literal notranslate"><span class="pre">betrayal</span></code> is reserved for the lowest circle of Hell, where those who have violated the deepest bonds of trust are eternally frozen in ice, farthest from the warmth of divine light. Judas Iscariot, the archetypal betrayer, resides here, much like in Leonardo da Vinci’s <em>The Last Supper</em>, where he is positioned, clutching his silver, as the inevitable betrayer. In our framework, this moment of betrayal represents the descent from cooperative games—the communal harmony that Christ embodies at the table—into adversarial games, where strategy, deception, and ultimately betrayal reign supreme. Of course, da Vinci masterfully balances mathematical precision with profound human drama, positioning it at the <code class="docutils literal notranslate"><span class="pre">intersection</span></code> of divine order and human betrayal. While we’ve categorized him under the mathematics-obsessive, striving for the harmony of <em>Paradiso</em>, the painting itself—particularly Judas’ betrayal—reminds us of the darker realities, much like Dante’s <em>Inferno</em>. It’s a scene where divine proportions and human fallibility collide, showing that even in pursuit of perfect balance, da Vinci was not blind to the chaos beneath. In this sense, our framework may <code class="docutils literal notranslate"><span class="pre">unfairly</span></code> reduce da Vinci to pure geometry, when his art, particularly here, transcends that simplicity by grappling with the tragic betrayals embedded in human nature.</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -597,10 +659,10 @@ beaten into ploughshares – and the <a class="reference external" href="https:/
 </div>
 </div>
 <iframe src="https://www.youtube.com/embed/d0-y0X51Xtw" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="act1/figures/blanche.*"><img alt="act1/figures/blanche.*" src="act1/figures/blanche.*" style="width: 1px; height: 1px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text"><em>Jon Stewart &amp; Ta-Nehisi Coates</em>. Nothing intellectual here. It’s just folks describing the equilibrium they wish for. They’d probably align with Michelangelo, Ludwig, and Karl in our framework: idealist to an aesthetic fault. But Dante might condemn them to the first circle of <em>Inferno</em> since they reside in an adversarial game where you’re either eaten up or you become a worthy adversary, <span id="id1"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id53" title="Dante Alighieri. The Divine Comedy: Volume 1: Inferno. Penguin Classics, 1984.">1</a></sup></span> setting up several iterations <span id="id2"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id54" title="Dante Alighieri. The Divine Comedy: Volume 2: Purgatorio. Penguin Classics, 1984.">2</a></sup></span> that Aumann assures us will lead ultimately to the cooperative bliss of <em>Paradiso</em>. <span id="id3"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id55" title="Dante Alighieri. The Divine Comedy: Volume 3: Paradiso. Penguin Classics, 1984.">3</a></sup></span>. Paradise is lost by unworthy adversaries. <span id="id4"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id56" title="John Milton. Paradise Lost. Penguin Classics, 2003.">4</a></sup></span></span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text"><em>Jon Stewart &amp; Ta-Nehisi Coates</em>. Nothing intellectual here. It’s just folks describing the equilibrium they wish for. They’d probably align with Michelangelo, Ludwig, and Karl in our framework: idealist to an aesthetic fault. But Dante might condemn them to the first circle of <em>Inferno</em> since they reside in an adversarial game where you’re either eaten up or you become a worthy adversary, <span id="id1"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id53" title="Dante Alighieri. The Divine Comedy: Volume 1: Inferno. Penguin Classics, 1984.">1</a></sup></span> setting up several iterations <span id="id2"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id54" title="Dante Alighieri. The Divine Comedy: Volume 2: Purgatorio. Penguin Classics, 1984.">2</a></sup></span> that Aumann assures us will lead ultimately to the cooperative bliss of <em>Paradiso</em>. <span id="id3"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id55" title="Dante Alighieri. The Divine Comedy: Volume 3: Paradiso. Penguin Classics, 1984.">3</a></sup></span>. Paradise is lost by unworthy adversaries. <span id="id4"><sup><a class="reference internal" href="../act3/part3/part3_3.html#id56" title="John Milton. Paradise Lost. Penguin Classics, 2003.">4</a></sup></span></span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
