@@ -531,6 +531,62 @@ document.write(`
 <p><span class="caption-number">Fig. 9 </span><span class="caption-text"><em>Image Uploaded to GPT-4o</em>. This gives me hope. Looks like I’ve been grappling with an archetype. So it should resonate with audiences in the clinical research space.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Creating a simplified directed acyclic graph (DAG) based on the clarified structure</span>
+<span class="n">G_simplified_dag</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Adding nodes</span>
+<span class="n">nodes_simplified</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Allegory&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Type&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Games&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Archetype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Stereotype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Prototype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Comical&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tragical&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Historical&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Adding edges based on the clarified structure</span>
+<span class="n">edges_simplified</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Allegory&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Games&quot;</span><span class="p">,</span> <span class="s2">&quot;Archetype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Archetype&quot;</span><span class="p">,</span> <span class="s2">&quot;Stereotype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Stereotype&quot;</span><span class="p">,</span> <span class="s2">&quot;Prototype&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Prototype&quot;</span><span class="p">,</span> <span class="s2">&quot;Comical&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Prototype&quot;</span><span class="p">,</span> <span class="s2">&quot;Tragical&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Prototype&quot;</span><span class="p">,</span> <span class="s2">&quot;Historical&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Adding the nodes and edges to the new simplified DAG</span>
+<span class="n">G_simplified_dag</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes_simplified</span><span class="p">)</span>
+<span class="n">G_simplified_dag</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges_simplified</span><span class="p">)</span>
+
+<span class="c1"># Plotting the simplified DAG</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">pos_simplified</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G_simplified_dag</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">343</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G_simplified_dag</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos_simplified</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simplified DAG: Pediatric Rehabilitation Inequity Flow&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/fcc58ab4267a2477802a02088945c1255f231aa374ac472a86c498904ea7369b.png" src="../_images/fcc58ab4267a2477802a02088945c1255f231aa374ac472a86c498904ea7369b.png" />
+</div>
+</div>
 </section>
 </section>
 
