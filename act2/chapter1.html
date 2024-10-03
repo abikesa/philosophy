@@ -502,7 +502,7 @@ document.write(`
 <h2>6<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">United Nations</p>
-<p>The Anglo-Saxon world order is also called the Judeo-Christian “value system” , symbolized by the charter that formed the UN</p>
+<p>The Anglo-Saxon world order is also called the Judeo-Christian “value system”, symbolized by the charter that formed the UN</p>
 </div>
 <p>Yes, the Anglo-Saxon world order is often framed within the context of the Judeo-Christian value system, especially in the post-World War II era, symbolized by documents like the United Nations Charter. This framing suggests that the international order, particularly the liberal democratic institutions that emerged from the ashes of the war, is based on a moral and legal framework deeply rooted in Judeo-Christian ethics. These values emphasize human dignity, individual rights, justice, and peace—principles that are woven into key founding documents like the UN Charter, the Universal Declaration of Human Rights, and the post-war reconstruction efforts.</p>
 <p>The Judeo-Christian value system is seen as providing a moral foundation for concepts like the sanctity of life, the rule of law, equality before the law, and the idea that all humans have inherent rights given by a higher power (or, in more secular terms, by nature or reason). This has been crucial in shaping the ideological and legal frameworks of many Western nations, especially those led by Anglo-Saxon powers like the United States and the United Kingdom. The UN Charter, for example, emphasizes peace, security, and cooperation, ideals that align with the Christian notions of stewardship, the common good, and the pursuit of justice.</p>
@@ -598,83 +598,13 @@ document.write(`
 <p>These conflicts suggest a world where not only is consensus dead, but so is the hope of a unified moral or political order. We’re entering an era where the fragmentation of power—globally and locally—is resulting in a chaotic, multipolar world. It’s a situation Nietzsche warned of: without a cohesive framework for meaning and value, violence and power struggles are likely to fill the void.</p>
 <p>What’s especially dangerous is the interconnectedness of these conflicts. A major escalation in any one of these regions could have cascading effects, dragging larger powers like the U.S., Russia, and even China into direct confrontation. The fragile web of alliances and geopolitical rivalries is stretched thin, and the risk of a miscalculation or unintended escalation is higher than it’s been in decades.</p>
 <p>We seem to be facing a future where the failures of modern institutions to manage conflict could plunge the world into a period of extended violence and instability. And, in Nietzschean terms, we have yet to see if humanity can rise above this fragmentation and create something new—or whether we are doomed to repeat the cycles of violence that have marked so much of human history.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
-    <span class="n">cooperate_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">cooperate_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">defect_share</span><span class="p">)</span>
-    <span class="n">defect_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">defect_share</span>
-    <span class="n">defect_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">inefficiency</span> <span class="o">/</span> <span class="mi">2</span>
-    
-    <span class="n">payoff_matrix_p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cooperate_cooperate</span><span class="p">,</span> <span class="n">cooperate_defect</span><span class="p">],</span>
-                                 <span class="p">[</span><span class="n">defect_cooperate</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
-    <span class="n">payoff_matrix_p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cooperate_cooperate</span><span class="p">,</span> <span class="n">defect_cooperate</span><span class="p">],</span>
-                                 <span class="p">[</span><span class="n">cooperate_defect</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
-    <span class="k">return</span> <span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span>
-
-<span class="k">def</span> <span class="nf">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
-    <span class="n">player1_strategy</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">player2_strategy</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">player1_payoff_history</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">player2_payoff_history</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
-        <span class="n">p1_payoff</span> <span class="o">=</span> <span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="n">player1_strategy</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span>
-        <span class="n">p2_payoff</span> <span class="o">=</span> <span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="n">player1_strategy</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span>
-        
-        <span class="n">player1_payoff_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1_payoff</span><span class="p">)</span>
-        <span class="n">player2_payoff_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2_payoff</span><span class="p">)</span>
-
-        <span class="n">future_payoff_cooperate</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p1_payoff</span> <span class="o">*</span> <span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span><span class="p">))</span>
-        <span class="n">future_payoff_defect</span> <span class="o">=</span> <span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-
-        <span class="n">player1_strategy</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">future_payoff_defect</span> <span class="o">&gt;</span> <span class="n">future_payoff_cooperate</span> <span class="k">else</span> <span class="mi">0</span>
-
-        <span class="n">future_payoff_cooperate</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p2_payoff</span> <span class="o">*</span> <span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span><span class="p">))</span>
-        <span class="n">future_payoff_defect</span> <span class="o">=</span> <span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">player2_strategy</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="n">player2_strategy</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">future_payoff_defect</span> <span class="o">&gt;</span> <span class="n">future_payoff_cooperate</span> <span class="k">else</span> <span class="mi">0</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Round </span><span class="si">{</span><span class="nb">round</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: Player 1 chooses </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">player1_strategy</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">, &quot;</span>
-              <span class="sa">f</span><span class="s2">&quot;Player 2 chooses </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">player2_strategy</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Return only the final strategies, combined total payoff</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">player1_strategy</span><span class="p">,</span> <span class="n">player2_strategy</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">player1_payoff_history</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">player2_payoff_history</span><span class="p">)</span>
-
-<span class="c1"># Setup and run the game</span>
-<span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span> <span class="o">=</span> <span class="n">resource_based_payoff</span><span class="p">()</span>
-<span class="n">equilibrium</span><span class="p">,</span> <span class="n">total_payoff</span> <span class="o">=</span> <span class="n">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equilibrium: Player 1 = </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">equilibrium</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">, &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;Player 2 = </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">equilibrium</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Payoff: </span><span class="si">{</span><span class="n">total_payoff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Round 1: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 2: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 3: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 4: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 5: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 6: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 7: Player 1 chooses Cooperate, Player 2 chooses Cooperate
-Round 8: Player 1 chooses Defect, Player 2 chooses Cooperate
-Round 9: Player 1 chooses Cooperate, Player 2 chooses Defect
-Round 10: Player 1 chooses Defect, Player 2 chooses Cooperate
-Equilibrium: Player 1 = Defect, Player 2 = Cooperate
-Total Payoff: 1000.0
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="id11">
 <h2>11<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
 <div class="admonition">
 <p class="admonition-title">Überfrau?</p>
-<p>Neologisms to the rescue</p>
+<p>Neologisms to the rescue. But to be clear, “mensch” is human, not “man” in the gendered sense. So Überfrau, like all neologisms, is uncalledfor</p>
 </div>
 <p>The idea of the <em>Überfrau</em>—as a counterpart to Nietzsche’s <em>Übermensch</em>—is a fascinating concept, particularly when viewed through the lens of contemporary feminism and modern social dynamics. While Nietzsche himself didn’t explicitly write about the <em>Überfrau</em>, the idea could be extrapolated from his vision of the <em>Übermensch</em> as a figure who transcends the limitations of traditional morality and societal structures, creating new values and living beyond the constraints of conventional thinking.</p>
 <p>In the context of the ongoing upheavals in gender roles, power structures, and identity politics, the <em>Überfrau</em> would represent a woman who embodies these Nietzschean ideals of self-overcoming and value-creation, but specifically in relation to the historical oppression of women under patriarchy. Whereas the <em>Übermensch</em> transcends the moral limitations imposed by Christian dogma, the <em>Überfrau</em> would transcend the limitations imposed by a patriarchal society and its expectations of women.</p>
