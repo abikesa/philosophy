@@ -1,5 +1,3 @@
-Here's the revised version with improvements in grammar, syntax, and paragraph structure:
-
 # Chapter 1  
 ## 1  
 
