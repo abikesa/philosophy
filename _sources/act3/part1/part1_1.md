@@ -1,7 +1,7 @@
 # Chapter 1
 ## 1
 
-```{admonition} 
+```{admonition} Allegory
 :class: tip
 I woke up with this very clear understanding that I was counseled for a good reason. I should stop giving excuses. And the reason is more complicated than anyone involved would understand. Number one is that in our first year of PhD, Sharing Wisdom is a book by Robert J. Weeks that I was given. We were gifted to help us to be mentors in mentorship. I did not read that book. It's a little tiny book. I didn't bother reading it. I have not read it yet. But using game theory, it's occurred to me that the adversarial manner in which my mentor, Dory, trained us, made this appropriate for me, but not always at the time. It just made me stronger, harder. And me bringing that adversarial stuff to millennial generation, especially female, creates many layers of problems. They're not worthy adversaries, and mentorship is supposed to be a cooperative game. Although Dory seems to hint at the idea that it could be maybe a thesis-antithesis. Mentor being a thesis, mentee being an antithesis, and then getting a synthesis out of there. He was just being clever. Maybe he had read it. But mentorship, mentee, I think is supposed to be a cooperative game. When mentee probably breaks away like Carl Jung from Freud, I guess it represents the fact that the mentee feels worthy of being an adversary. And does not need the loving care of a parent. He is one of an adversary. It's a statement. What someone calls anxiety of influence, or Oedipus complex. But it's that. That's what it is. Maybe when you've grown enough, and you feel worthy to be an adversary, you can move from cooperative to iterative, and then adversary again. But for a brand new trainee, which was my case, I think, that was brought to my attention. It was a brand new trainee, and I was really harsh, but I was really attacking her immediate mentors, who were sloppy. And I used bad language. I get out of me. The card in my thinking now shows me my faults. It's taken me a year and a half to appreciate this. I should stop being defensive.
 ```
@@ -20,8 +20,8 @@ This awareness could open doors to a more balanced style, where you still push y
 
 ## 2
 
-```{admonition} 
-:class: tip`
+```{admonition} Gentle 
+:class: note
 Absolutely
 ```
 
@@ -29,24 +29,24 @@ That’s a powerful shift. Moving forward with this awareness will likely foster
 
 ## 3
 
-```{admonition} 
-:class: tip
+```{admonition} Modifier 
+:class: seealso
 So the book I neglected, Sharing Wisdom by Robert J. Weeks, I just looked at the table of contents and I just looked at zero down to chapter nine, Identity, and the subtitle is two words. So being a smartass, I was like, hmm, let me predict this next token. I was excited by the prediction of next tokens because that's part of game theory, that's part of training, machine learning, that's just part of intelligence. So I was like, oh, those two words should be good job, like be a good mentor. So I zeroed down to the place and nothing closed, not even close, not even close. And let's get right to it. So for instance, my primary word is passion, passion. However, in my book, Living a Gentle Passion Life, I chose gentle as the second word. Okay, you get it? Second word, the title of the chapter, subtitle. Without that modifier, I sense that instead of being passionate, filled with vitality and inspiration to others, I would be arrogant and exhibitionist at the very least intrusive or annoying. Just described me, my God, I'm at the one word level passionate.
 ```
 
 It's fascinating how you're able to break down your own thought process like that. Predicting the next token, especially in something like mentorship or life philosophy, can sometimes throw us off because the reality is far more nuanced than expected. Your realization about how “passion” without “gentle” could easily morph into arrogance or exhibitionism shows a deepening self-awareness. It’s like you're starting to see how to channel that intensity in ways that inspire rather than overwhelm. That’s a big leap in understanding yourself and how you present to others.
 
 ## 4
-```{admonition} 
-:class: tip
+```{admonition} Sharing 
+:class: important
 I think you missed it. I'm quoting something from a book that I randomly zeroed into Chapter 9 of. That's all. It's not my own personal reflection. It's just that it resonated shockingly precisely.
 ```
 
 Got it! It’s pretty wild when a random excerpt hits that close to home. It’s like the book managed to reflect something back to you that felt personal, even if you weren’t expecting it. Maybe this is a sign that *Sharing Wisdom* might have some more insights to offer.
 
 ## 5
-```{admonition} 
-:class: tip
+```{admonition} Problem
+:class: danger
 Clearly, it seems to do, and it was given to us in 2020, my first year of the PhD. I'm now in the fifth year, and I haven't yet read it. So I've been very, very, very selective of influences, and that's been a problem.
 ```
 
@@ -64,7 +64,7 @@ We open the preface to this book with the declaration "Let’s merge game theory
 
 Indeed, why not?
 
-Let's review a simple simulation from the previous chapter under subsection {ref}`rounds`. This is a two-person `game` with ten rounds.
+Let's review a simple simulation from the previous chapter {ref}`act1`. This is a two-person `game` with ten rounds.
 
 But if we think of Dante's `allegory` as [three games](https://www.gutenberg.org/files/8800/8800-h/8800-h.htm), each with 33 rounds or cantos, then we might be onto something!
 
