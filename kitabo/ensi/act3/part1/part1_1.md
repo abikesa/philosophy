@@ -5,7 +5,7 @@
 :class: tip  
 I woke up with a very clear understanding that I had been "cancelled" for a good reason: I should stop making excuses. The reason is more complicated than anyone involved would understand.  
 
-In the first year of my PhD, we were given *Sharing Wisdom* by Robert J. Weeks to help us become mentors in mentorship. I didn’t read it. It’s a small, unassuming book, and I didn’t bother. I still haven’t read it. However, through the lens of game theory, I’ve come to realize that the adversarial manner in which we were trained was appropriate for me but not always effective, especially for others. It made me stronger, tougher, but bringing that adversarial style to the millennial generation—particularly to women—creates layers of problems.  
+In the first year of my PhD, we were given *Sharing Wisdom* by Robert J. Weeks to help us become mentors in mentorship. I didn’t read it. It’s a small, unassuming book, and I didn’t bother. I still haven’t read it. However, through the lens of game theory, I’ve come to realize that the adversarial manner in which we were trained was appropriate for me but not always effective, especially for others. It made me stronger, tougher, but bringing that adversarial style to the [Gen Z](https://abikesa.github.io/philosophy/index.html#generations) generation—particularly to women—creates layers of problems.  
 
 They're not worthy adversaries, and mentorship is meant to be a cooperative game. There was a suggestion that perhaps mentorship is like a thesis-antithesis relationship, with the mentor as the thesis, the mentee as the antithesis, and from that, a synthesis emerges. But I believe it should remain cooperative.  
 
