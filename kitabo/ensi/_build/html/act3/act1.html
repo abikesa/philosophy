@@ -410,9 +410,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-how-to-empirically-observe-equilibrium">Step 3: How to Empirically Observe Equilibrium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-simulation-of-equilibrium-in-python">Empirical Simulation of Equilibrium in Python:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Output Example:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusion:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusion:</a></li>
 </ul>
             </nav>
         </div>
@@ -607,6 +608,9 @@ M = \begin{bmatrix}
 <h2>Empirical Simulation of Equilibrium in Python:<a class="headerlink" href="#empirical-simulation-of-equilibrium-in-python" title="Permalink to this heading">#</a></h2>
 <p>Now, let’s simulate this in Python to dynamically find equilibrium through <strong>repeated interactions</strong> between players.</p>
 <p>We’ll use the <strong>best response dynamics</strong>—players adjust their strategies based on the best possible response to the other player’s strategy. The simulation will iterate through several rounds until the players’ strategies stabilize (reach equilibrium).</p>
+</section>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -692,8 +696,8 @@ Total Payoff: 1000.0
 <li><p><strong>Convergence to Equilibrium</strong>: The game continues until neither player can improve by changing their strategy, which leads to the Nash Equilibrium.</p></li>
 </ol>
 </section>
-<section id="id1">
-<h2>Output Example:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="id2">
+<h2>Output Example:<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Round</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Player</span> <span class="mi">1</span> <span class="n">chooses</span> <span class="n">Defect</span><span class="p">,</span> <span class="n">Player</span> <span class="mi">2</span> <span class="n">chooses</span> <span class="n">Defect</span>
 <span class="n">Round</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Player</span> <span class="mi">1</span> <span class="n">chooses</span> <span class="n">Defect</span><span class="p">,</span> <span class="n">Player</span> <span class="mi">2</span> <span class="n">chooses</span> <span class="n">Defect</span>
 <span class="o">...</span>
@@ -701,8 +705,8 @@ Total Payoff: 1000.0
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h2>Conclusion:<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h2>Conclusion:<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p><strong>Equilibrium</strong> empirically emerges when players adjust their strategies in response to one another until no one has an incentive to change. In this example, both players defect in every round because it’s their best response given the other’s strategy, leading to a <strong>Nash Equilibrium</strong> at (Defect, Defect). This is where equilibrium is observed empirically in real-life games—through <strong>iterative adjustments</strong> and learning that stabilizes strategy choices.</p>
 <p>This should give you a clearer understanding of how equilibrium emerges both conceptually and empirically through game interactions.</p>
 </section>
@@ -790,9 +794,10 @@ Total Payoff: 1000.0
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-how-to-empirically-observe-equilibrium">Step 3: How to Empirically Observe Equilibrium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-simulation-of-equilibrium-in-python">Empirical Simulation of Equilibrium in Python:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Output Example:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusion:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusion:</a></li>
 </ul>
   </nav></div>
 
