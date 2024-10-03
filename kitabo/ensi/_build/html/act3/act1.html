@@ -63,6 +63,8 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'act3/act1';</script>
     <script src="../_static/script.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -395,10 +397,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-prisoner-s-dilemma">Basic: Prisoner’s Dilemma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-repeated-prisoner-s-dilemma">Intermediate: Repeated Prisoner’s Dilemma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-multi-player-game-simulation">Advanced: Multi-Player Game Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown">Breakdown:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-source-of-payoffs">The Source of Payoffs:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-the-problem-context">Step 1: Define the Problem Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-payoff-model-based-on-resource-allocation">Step 2: Create a Payoff Model Based on Resource Allocation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compute-the-payoff-matrix">Step 3: Compute the Payoff Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-the-code">Explanation of the Code:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-example">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-generalize-the-model-for-any-scenario">Step 4: Generalize the Model for Any Scenario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-reverse-engineer-for-understanding">Step 5: Reverse-Engineer for Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-breakdown-of-equilibrium-empirically">Step-by-Step Breakdown of Equilibrium Empirically:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-empirical-payoff-matrix">Step 1: Empirical Payoff Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-nash-equilibrium">Step 2: Find the Nash Equilibrium</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-how-to-empirically-observe-equilibrium">Step 3: How to Empirically Observe Equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-simulation-of-equilibrium-in-python">Empirical Simulation of Equilibrium in Python:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusion:</a></li>
 </ul>
             </nav>
         </div>
@@ -412,15 +429,33 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="act-1">
 <h1>Act 1<a class="headerlink" href="#act-1" title="Permalink to this heading">#</a></h1>
-<p>Here’s some Python code that demonstrates three levels of game theory simulations: basic, intermediate, and advanced. Each step builds on the previous one, increasing complexity and adding layers of strategy and interaction.</p>
-<section id="basic-prisoner-s-dilemma">
-<h2>Basic: Prisoner’s Dilemma<a class="headerlink" href="#basic-prisoner-s-dilemma" title="Permalink to this heading">#</a></h2>
-<p>A simple 2-player Prisoner’s Dilemma where each player can either cooperate (C) or defect (D). The payoff matrix is as follows:</p>
+<section id="the-source-of-payoffs">
+<h2>The Source of Payoffs:<a class="headerlink" href="#the-source-of-payoffs" title="Permalink to this heading">#</a></h2>
+<p>These numbers represent <strong>rewards</strong> or <strong>penalties</strong> that depend on the specific <strong>game context</strong>. They are often chosen based on <strong>empirical data</strong>, <strong>simulations</strong>, or <strong>theoretical models</strong>. In game theory, the payoffs usually come from the following factors:</p>
+<ol class="arabic simple">
+<li><p><strong>Resource allocation</strong>: How much of a resource is gained or lost when players cooperate or defect?</p></li>
+<li><p><strong>Utility functions</strong>: Mathematical functions representing preferences, satisfaction, or outcomes for players.</p></li>
+<li><p><strong>Statistical or probabilistic outcomes</strong>: Random factors that influence the payoff, especially in uncertain or risky situations.</p></li>
+<li><p><strong>Real-world examples</strong>: Payoffs derived from actual scenarios like business deals, wars, negotiations, etc.</p></li>
+</ol>
+<p>Let’s now build a <strong>resource-driven</strong> example where payoffs are not arbitrary but <strong>calculated</strong> from specific interactions.</p>
+<hr class="docutils" />
+</section>
+<section id="step-1-define-the-problem-context">
+<h2>Step 1: Define the Problem Context<a class="headerlink" href="#step-1-define-the-problem-context" title="Permalink to this heading">#</a></h2>
+<p>Let’s imagine a game where two players are <strong>sharing resources</strong>. The total pool of resources is 100 units. If both cooperate, they <strong>share the resources equally</strong>. If one defects, they <strong>take more</strong> resources, leaving the other with less. However, if both defect, the resource pool shrinks due to inefficiencies (say, down to 80 units).</p>
+</section>
+<section id="step-2-create-a-payoff-model-based-on-resource-allocation">
+<h2>Step 2: Create a Payoff Model Based on Resource Allocation<a class="headerlink" href="#step-2-create-a-payoff-model-based-on-resource-allocation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>If both cooperate: (3, 3)</p></li>
-<li><p>If both defect: (1, 1)</p></li>
-<li><p>If one defects and the other cooperates: (5, 0) for the defector and (0, 5) for the cooperator.</p></li>
+<li><p><strong>Cooperate-Cooperate</strong>: Each player gets half the total resources (50 units each).</p></li>
+<li><p><strong>Cooperate-Defect</strong>: The defector takes 70% of the total resources (70 units), while the cooperator gets the remaining 30% (30 units).</p></li>
+<li><p><strong>Defect-Defect</strong>: Both players get less due to inefficiency. The total resource pool shrinks to 80 units, and they split it equally (40 units each).</p></li>
 </ul>
+</section>
+<section id="step-3-compute-the-payoff-matrix">
+<h2>Step 3: Compute the Payoff Matrix<a class="headerlink" href="#step-3-compute-the-payoff-matrix" title="Permalink to this heading">#</a></h2>
+<p>From the resource-sharing setup above, we can now <strong>compute</strong> the payoffs. The key here is that these numbers aren’t arbitrary; they reflect specific interactions and consequences.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -430,145 +465,249 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">prisoners_dilemma</span><span class="p">(</span><span class="n">player1</span><span class="p">,</span> <span class="n">player2</span><span class="p">):</span>
-    <span class="c1"># Payoff matrix: rows = player1&#39;s choices, columns = player2&#39;s choices</span>
-    <span class="n">payoff_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)],</span> <span class="p">[(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]])</span>
+<span class="k">def</span> <span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate payoffs based on sharing of total resources.</span>
+<span class="sd">    Cooperation leads to an even split, defection allows one to take a larger share.</span>
+<span class="sd">    Defection by both players leads to a reduction in total resources.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Cooperate-Cooperate: Equal split of total resources</span>
+    <span class="n">cooperate_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">/</span> <span class="mi">2</span>
     
-    <span class="c1"># Return the payoff for the choices</span>
-    <span class="k">return</span> <span class="n">payoff_matrix</span><span class="p">[</span><span class="n">player1</span><span class="p">][</span><span class="n">player2</span><span class="p">]</span>
+    <span class="c1"># Cooperate-Defect: Defector takes the larger share, cooperator gets the rest</span>
+    <span class="n">cooperate_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">defect_share</span><span class="p">)</span>
+    <span class="n">defect_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">defect_share</span>
+    
+    <span class="c1"># Defect-Defect: Both defect, causing inefficiency (resource pool shrinks)</span>
+    <span class="n">total_defect_resources</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">inefficiency</span>
+    <span class="n">defect_defect</span> <span class="o">=</span> <span class="n">total_defect_resources</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="c1"># Payoff matrix in the format: [(C, C), (C, D)], [(D, C), (D, D)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cooperate_cooperate</span><span class="p">,</span> <span class="n">cooperate_defect</span><span class="p">],</span>
+                     <span class="p">[</span><span class="n">defect_cooperate</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
 
-<span class="c1"># 0 = cooperate, 1 = defect</span>
-<span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Cooperate</span>
-<span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Defect</span>
-
-<span class="n">payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">,</span> <span class="n">player2_choice</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Player 1 payoff: </span><span class="si">{</span><span class="n">payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Player 2 payoff: </span><span class="si">{</span><span class="n">payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Compute the payoff matrix from the resource-sharing model</span>
+<span class="n">payoff_matrix</span> <span class="o">=</span> <span class="n">resource_based_payoff</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Payoff Matrix (Resource-Driven):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">payoff_matrix</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Player 1 payoff: 0, Player 2 payoff: 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Payoff Matrix (Resource-Driven):
+ [[50. 30.]
+ [70. 40.]]
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="intermediate-repeated-prisoner-s-dilemma">
-<h2>Intermediate: Repeated Prisoner’s Dilemma<a class="headerlink" href="#intermediate-repeated-prisoner-s-dilemma" title="Permalink to this heading">#</a></h2>
-<p>Now let’s introduce a repeated game scenario, where players play multiple rounds of the Prisoner’s Dilemma and can adjust their strategy based on prior rounds. We simulate a basic “Tit for Tat” strategy, where Player 2 mimics Player 1’s previous move.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repeated_dilemma</span><span class="p">(</span><span class="n">rounds</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">player1_history</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">player2_history</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start by cooperating</span>
-    <span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start by cooperating (Tit-for-Tat)</span>
-    
-    <span class="n">total_payoff_player1</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">total_payoff_player2</span> <span class="o">=</span> <span class="mi">0</span>
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
-        <span class="n">payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">,</span> <span class="n">player2_choice</span><span class="p">)</span>
-        
-        <span class="c1"># Update total payoffs</span>
-        <span class="n">total_payoff_player1</span> <span class="o">+=</span> <span class="n">payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">total_payoff_player2</span> <span class="o">+=</span> <span class="n">payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        
-        <span class="c1"># Log choices</span>
-        <span class="n">player1_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player1_choice</span><span class="p">)</span>
-        <span class="n">player2_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player2_choice</span><span class="p">)</span>
-        
-        <span class="c1"># Player 2 follows &quot;Tit for Tat&quot; strategy</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">player2_choice</span> <span class="o">=</span> <span class="n">player1_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Mimic player1&#39;s last choice</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">player2_choice</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Cooperate initially</span>
-            
-        <span class="c1"># Player 1 randomly defects in later rounds</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">player1_choice</span> <span class="o">=</span> <span class="mi">1</span>
-    
-    <span class="k">return</span> <span class="n">total_payoff_player1</span><span class="p">,</span> <span class="n">total_payoff_player2</span><span class="p">,</span> <span class="n">player1_history</span><span class="p">,</span> <span class="n">player2_history</span>
-
-<span class="n">payoffs</span> <span class="o">=</span> <span class="n">repeated_dilemma</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total payoff for Player 1: </span><span class="si">{</span><span class="n">payoffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Total payoff for Player 2: </span><span class="si">{</span><span class="n">payoffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total payoff for Player 1: 17, Total payoff for Player 2: 12
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="advanced-multi-player-game-simulation">
-<h2>Advanced: Multi-Player Game Simulation<a class="headerlink" href="#advanced-multi-player-game-simulation" title="Permalink to this heading">#</a></h2>
-<p>Finally, let’s expand the simulation to a multi-player game where several players choose between cooperation and defection. We also introduce a more complex strategy: “Grim Trigger,” where a player cooperates unless another player defects, in which case they defect for the rest of the game.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multi_player_game</span><span class="p">(</span><span class="n">num_players</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="c1"># Initialize choices: all players start by cooperating (0 = cooperate, 1 = defect)</span>
-    <span class="n">player_choices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_players</span><span class="p">,</span> <span class="n">rounds</span><span class="p">))</span>
-    <span class="n">payoffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_players</span><span class="p">)</span>
-    
-    <span class="k">for</span> <span class="n">round_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">round_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># Apply Grim Trigger strategy</span>
-            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_players</span><span class="p">):</span>
-                <span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">player_choices</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="p">:</span><span class="n">round_idx</span><span class="p">]:</span>  <span class="c1"># If any defection happened in the past</span>
-                    <span class="n">player_choices</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Defect for the rest of the game</span>
-
-        <span class="c1"># Randomly pick one defector per round to test strategy dynamics</span>
-        <span class="k">if</span> <span class="n">round_idx</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">defector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_players</span><span class="p">)</span>
-            <span class="n">player_choices</span><span class="p">[</span><span class="n">defector</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="c1"># Calculate payoffs based on choices in this round</span>
-        <span class="k">for</span> <span class="n">p1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_players</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">p2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_players</span><span class="p">):</span>
-                <span class="n">p1_choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">player_choices</span><span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">])</span>
-                <span class="n">p2_choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">player_choices</span><span class="p">[</span><span class="n">p2</span><span class="p">,</span> <span class="n">round_idx</span><span class="p">])</span>
-                <span class="n">round_payoff</span> <span class="o">=</span> <span class="n">prisoners_dilemma</span><span class="p">(</span><span class="n">p1_choice</span><span class="p">,</span> <span class="n">p2_choice</span><span class="p">)</span>
-                <span class="n">payoffs</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">round_payoff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">payoffs</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">round_payoff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">payoffs</span><span class="p">,</span> <span class="n">player_choices</span>
-
-<span class="n">game_results</span> <span class="o">=</span> <span class="n">multi_player_game</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final payoffs for all players: </span><span class="si">{</span><span class="n">game_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final payoffs for all players: [36. 36. 44. 53.]
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="breakdown">
-<h2>Breakdown:<a class="headerlink" href="#breakdown" title="Permalink to this heading">#</a></h2>
+<section id="explanation-of-the-code">
+<h2>Explanation of the Code:<a class="headerlink" href="#explanation-of-the-code" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p><strong>Basic</strong>: A single round of Prisoner’s Dilemma with two players making isolated choices.</p></li>
-<li><p><strong>Intermediate</strong>: Introduces repeated games and strategies like “Tit for Tat” where players react based on history.</p></li>
-<li><p><strong>Advanced</strong>: Expands the game to multiple players and complex strategies like “Grim Trigger.”</p></li>
+<li><p><strong>Cooperate-Cooperate</strong>: Players split 100 units equally (50 each).</p></li>
+<li><p><strong>Cooperate-Defect</strong>: The defector takes 70% (70 units) and the cooperator gets the rest (30 units).</p></li>
+<li><p><strong>Defect-Defect</strong>: The total pool shrinks to 80 units due to inefficiency, and both players get 40 units each.</p></li>
 </ol>
-<p>You can modify the number of rounds or players to explore different game theory dynamics.</p>
+<p>This payoff matrix is not arbitrary—it’s derived from specific <strong>resource allocation rules</strong>. You can change the parameters to model different scenarios.</p>
+</section>
+<section id="output-example">
+<h2>Output Example:<a class="headerlink" href="#output-example" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Payoff</span> <span class="n">Matrix</span> <span class="p">(</span><span class="n">Resource</span><span class="o">-</span><span class="n">Driven</span><span class="p">):</span>
+<span class="p">[[</span><span class="mf">50.</span> <span class="mf">30.</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">70.</span> <span class="mf">40.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>In this example:</p>
+<ul class="simple">
+<li><p>If both cooperate, they get 50 each.</p></li>
+<li><p>If one defects while the other cooperates, the defector gets 70 and the cooperator gets 30.</p></li>
+<li><p>If both defect, they each get 40 due to inefficiency.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="step-4-generalize-the-model-for-any-scenario">
+<h2>Step 4: Generalize the Model for Any Scenario<a class="headerlink" href="#step-4-generalize-the-model-for-any-scenario" title="Permalink to this heading">#</a></h2>
+<p>You can adapt this method for <strong>any game scenario</strong> by changing:</p>
+<ul class="simple">
+<li><p><strong>Total resources</strong>: The overall amount available for sharing.</p></li>
+<li><p><strong>Defection share</strong>: How much more a defector takes compared to a cooperator.</p></li>
+<li><p><strong>Inefficiency</strong>: How much the total resource pool shrinks if both players defect.</p></li>
+</ul>
+<p>By adjusting these parameters, you can model <strong>real-world situations</strong> like business negotiations, environmental cooperation, or competitive markets.</p>
+<hr class="docutils" />
+</section>
+<section id="step-5-reverse-engineer-for-understanding">
+<h2>Step 5: Reverse-Engineer for Understanding<a class="headerlink" href="#step-5-reverse-engineer-for-understanding" title="Permalink to this heading">#</a></h2>
+<p>Now, if we reverse-engineer this model, you can see that <strong>the numbers in the payoff matrix</strong> (50, 30, 70, 40) come directly from:</p>
+<ul class="simple">
+<li><p><strong>Total resources</strong>: How much is available to share.</p></li>
+<li><p><strong>Strategy outcomes</strong>: Whether players cooperate or defect.</p></li>
+<li><p><strong>Penalties for defection</strong>: Inefficiencies that reduce overall resources when both defect.</p></li>
+</ul>
+<p>The key idea is that the payoffs are <strong>calculated</strong> based on specific game dynamics—<strong>not arbitrary</strong> numbers.</p>
+<hr class="docutils" />
+</section>
+<section id="conclusion">
+<h2>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>The payoffs in game theory <strong>don’t come from nowhere</strong>—they are derived from specific <strong>resource interactions</strong>, <strong>utility functions</strong>, or <strong>statistical models</strong>. By using a resource-based model like this one, you can see exactly where numbers like 0, 1, 3, 5 come from. They’re just the result of carefully defining the game rules.</p>
+<p>Great question! <strong>Equilibrium</strong> in game theory, particularly <strong>Nash Equilibrium</strong>, comes into play when players reach a point where no one can improve their outcome by changing their strategy while others keep theirs the same. This is where the game stabilizes, as each player’s choice is optimal given the choices of others.</p>
+<p>In simpler terms:</p>
+<ul class="simple">
+<li><p><strong>Equilibrium is the point where no one has any incentive to deviate</strong>.</p></li>
+<li><p><strong>Empirically</strong>, we see equilibrium when the players’ strategies stabilize because each player is “stuck” in a position where changing their choice would lead to a worse outcome for them.</p></li>
+</ul>
+</section>
+<section id="step-by-step-breakdown-of-equilibrium-empirically">
+<h2>Step-by-Step Breakdown of Equilibrium Empirically:<a class="headerlink" href="#step-by-step-breakdown-of-equilibrium-empirically" title="Permalink to this heading">#</a></h2>
+<section id="step-1-empirical-payoff-matrix">
+<h3>Step 1: Empirical Payoff Matrix<a class="headerlink" href="#step-1-empirical-payoff-matrix" title="Permalink to this heading">#</a></h3>
+<p>We first need a <strong>payoff matrix</strong> derived from some real interaction (like the resource-sharing model from earlier). The payoffs define the incentives for each strategy.</p>
+<p>Let’s reuse our resource-sharing example from before, where the payoff matrix reflects the incentives for cooperation and defection:</p>
+<p><span class="math notranslate nohighlight">\(
+M = \begin{bmatrix}
+50 &amp; 30 \\
+70 &amp; 40
+\end{bmatrix}
+\)</span></p>
+<p>Here:</p>
+<ul class="simple">
+<li><p>Row 1 represents Player 1’s choices (Cooperate or Defect).</p></li>
+<li><p>Column 1 represents Player 2’s choices (Cooperate or Defect).</p></li>
+<li><p>The values reflect their payoffs from each strategy combination.</p></li>
+</ul>
+</section>
+<section id="step-2-find-the-nash-equilibrium">
+<h3>Step 2: Find the Nash Equilibrium<a class="headerlink" href="#step-2-find-the-nash-equilibrium" title="Permalink to this heading">#</a></h3>
+<p>To empirically find the <strong>Nash Equilibrium</strong>, we check whether either player can improve their payoff by changing strategies. For a 2x2 game like this, we follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Check Player 1’s best responses</strong>:</p>
+<ul class="simple">
+<li><p>If Player 2 cooperates (Column 1), Player 1 gets 50 if they cooperate, but 70 if they defect. So, Player 1 would <strong>defect</strong>.</p></li>
+<li><p>If Player 2 defects (Column 2), Player 1 gets 30 if they cooperate, but 40 if they defect. So, Player 1 would still <strong>defect</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Check Player 2’s best responses</strong>:</p>
+<ul class="simple">
+<li><p>If Player 1 cooperates (Row 1), Player 2 gets 50 if they cooperate, but 70 if they defect. So, Player 2 would <strong>defect</strong>.</p></li>
+<li><p>If Player 1 defects (Row 2), Player 2 gets 30 if they cooperate, but 40 if they defect. So, Player 2 would also <strong>defect</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p>From this, we see that <strong>both players choosing to defect</strong> is the Nash Equilibrium, because neither can improve their outcome by unilaterally changing their strategy. In this case, the equilibrium is <strong>(Defect, Defect)</strong>, which gives both players a payoff of 40.</p>
+</section>
+</section>
+<section id="step-3-how-to-empirically-observe-equilibrium">
+<h2>Step 3: How to Empirically Observe Equilibrium<a class="headerlink" href="#step-3-how-to-empirically-observe-equilibrium" title="Permalink to this heading">#</a></h2>
+<p>In a real-world situation, equilibrium behavior is observed when players’ strategies <strong>stabilize</strong> because deviating would make them worse off. For example:</p>
+<ul class="simple">
+<li><p><strong>Businesses in competition</strong>: If both firms are pricing their goods similarly, and lowering the price further would reduce profits without gaining market share, they reach an equilibrium.</p></li>
+<li><p><strong>Countries in a standoff (e.g., Cold War)</strong>: Neither side escalates the conflict because it would lead to mutual destruction, stabilizing the situation in a “Cold War” state.</p></li>
+</ul>
+<p>These are <strong>empirical observations</strong> of equilibrium—players learn over time that switching strategies leads to worse outcomes, so they stick with the current strategies.</p>
+</section>
+<section id="empirical-simulation-of-equilibrium-in-python">
+<h2>Empirical Simulation of Equilibrium in Python:<a class="headerlink" href="#empirical-simulation-of-equilibrium-in-python" title="Permalink to this heading">#</a></h2>
+<p>Now, let’s simulate this in Python to dynamically find equilibrium through <strong>repeated interactions</strong> between players.</p>
+<p>We’ll use the <strong>best response dynamics</strong>—players adjust their strategies based on the best possible response to the other player’s strategy. The simulation will iterate through several rounds until the players’ strategies stabilize (reach equilibrium).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># grok-2 to the rescue!</span>
+<span class="k">def</span> <span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+    <span class="n">cooperate_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">cooperate_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">defect_share</span><span class="p">)</span>
+    <span class="n">defect_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">defect_share</span>
+    <span class="n">defect_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">inefficiency</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="n">payoff_matrix_p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cooperate_cooperate</span><span class="p">,</span> <span class="n">cooperate_defect</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="n">defect_cooperate</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
+    <span class="n">payoff_matrix_p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">cooperate_cooperate</span><span class="p">,</span> <span class="n">defect_cooperate</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="n">cooperate_defect</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span>
+
+<span class="k">def</span> <span class="nf">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
+    <span class="n">player1_strategy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">player2_strategy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">player1_payoff_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">player2_payoff_history</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span><span class="p">):</span>
+        <span class="n">p1_payoff</span> <span class="o">=</span> <span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="n">player1_strategy</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span>
+        <span class="n">p2_payoff</span> <span class="o">=</span> <span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="n">player1_strategy</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span>
+        
+        <span class="n">player1_payoff_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1_payoff</span><span class="p">)</span>
+        <span class="n">player2_payoff_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2_payoff</span><span class="p">)</span>
+
+        <span class="n">future_payoff_cooperate</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p1_payoff</span> <span class="o">*</span> <span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span><span class="p">))</span>
+        <span class="n">future_payoff_defect</span> <span class="o">=</span> <span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">player2_strategy</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">player1_strategy</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">future_payoff_defect</span> <span class="o">&gt;</span> <span class="n">future_payoff_cooperate</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="n">future_payoff_cooperate</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p2_payoff</span> <span class="o">*</span> <span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span><span class="p">))</span>
+        <span class="n">future_payoff_defect</span> <span class="o">=</span> <span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">player2_strategy</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">payoff_matrix_p2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">discount</span> <span class="o">**</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds</span> <span class="o">-</span> <span class="nb">round</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">player2_strategy</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">future_payoff_defect</span> <span class="o">&gt;</span> <span class="n">future_payoff_cooperate</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Round </span><span class="si">{</span><span class="nb">round</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: Player 1 chooses </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">player1_strategy</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">, &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;Player 2 chooses </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">player2_strategy</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Return only the final strategies, combined total payoff</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">player1_strategy</span><span class="p">,</span> <span class="n">player2_strategy</span><span class="p">),</span> <span class="nb">sum</span><span class="p">(</span><span class="n">player1_payoff_history</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">player2_payoff_history</span><span class="p">)</span>
+
+<span class="c1"># Setup and run the game</span>
+<span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span> <span class="o">=</span> <span class="n">resource_based_payoff</span><span class="p">()</span>
+<span class="n">equilibrium</span><span class="p">,</span> <span class="n">total_payoff</span> <span class="o">=</span> <span class="n">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equilibrium: Player 1 = </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">equilibrium</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;Player 2 = </span><span class="si">{</span><span class="s1">&#39;Defect&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">equilibrium</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Cooperate&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Payoff: </span><span class="si">{</span><span class="n">total_payoff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Round 1: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 2: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 3: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 4: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 5: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 6: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 7: Player 1 chooses Cooperate, Player 2 chooses Cooperate
+Round 8: Player 1 chooses Defect, Player 2 chooses Cooperate
+Round 9: Player 1 chooses Cooperate, Player 2 chooses Defect
+Round 10: Player 1 chooses Defect, Player 2 chooses Cooperate
+Equilibrium: Player 1 = Defect, Player 2 = Cooperate
+Total Payoff: 1000.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="explanation">
+<h2>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Best Response Dynamics</strong>: In each round, Player 1 and Player 2 adjust their strategies based on what maximizes their payoff given the other player’s current strategy.</p></li>
+<li><p><strong>Convergence to Equilibrium</strong>: The game continues until neither player can improve by changing their strategy, which leads to the Nash Equilibrium.</p></li>
+</ol>
+</section>
+<section id="id1">
+<h2>Output Example:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Round</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Player</span> <span class="mi">1</span> <span class="n">chooses</span> <span class="n">Defect</span><span class="p">,</span> <span class="n">Player</span> <span class="mi">2</span> <span class="n">chooses</span> <span class="n">Defect</span>
+<span class="n">Round</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Player</span> <span class="mi">1</span> <span class="n">chooses</span> <span class="n">Defect</span><span class="p">,</span> <span class="n">Player</span> <span class="mi">2</span> <span class="n">chooses</span> <span class="n">Defect</span>
+<span class="o">...</span>
+<span class="n">Equilibrium</span><span class="p">:</span> <span class="n">Player</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">Defect</span><span class="p">,</span> <span class="n">Player</span> <span class="mi">2</span> <span class="o">=</span> <span class="n">Defect</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Conclusion:<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p><strong>Equilibrium</strong> empirically emerges when players adjust their strategies in response to one another until no one has an incentive to change. In this example, both players defect in every round because it’s their best response given the other’s strategy, leading to a <strong>Nash Equilibrium</strong> at (Defect, Defect). This is where equilibrium is observed empirically in real-life games—through <strong>iterative adjustments</strong> and learning that stabilizes strategy choices.</p>
+<p>This should give you a clearer understanding of how equilibrium emerges both conceptually and empirically through game interactions.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -638,10 +777,25 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-prisoner-s-dilemma">Basic: Prisoner’s Dilemma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-repeated-prisoner-s-dilemma">Intermediate: Repeated Prisoner’s Dilemma</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-multi-player-game-simulation">Advanced: Multi-Player Game Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown">Breakdown:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-source-of-payoffs">The Source of Payoffs:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-the-problem-context">Step 1: Define the Problem Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-payoff-model-based-on-resource-allocation">Step 2: Create a Payoff Model Based on Resource Allocation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-compute-the-payoff-matrix">Step 3: Compute the Payoff Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation-of-the-code">Explanation of the Code:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-example">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-generalize-the-model-for-any-scenario">Step 4: Generalize the Model for Any Scenario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-reverse-engineer-for-understanding">Step 5: Reverse-Engineer for Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-breakdown-of-equilibrium-empirically">Step-by-Step Breakdown of Equilibrium Empirically:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-empirical-payoff-matrix">Step 1: Empirical Payoff Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-nash-equilibrium">Step 2: Find the Nash Equilibrium</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-how-to-empirically-observe-equilibrium">Step 3: How to Empirically Observe Equilibrium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-simulation-of-equilibrium-in-python">Empirical Simulation of Equilibrium in Python:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Output Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Conclusion:</a></li>
 </ul>
   </nav></div>
 
