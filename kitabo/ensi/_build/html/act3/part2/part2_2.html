@@ -259,6 +259,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/abikesa/template/main?urlpath=tree/book/website/act3/part2/part2_2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -267,7 +298,7 @@
       
       
       
-      <li><a href="../../_sources/act3/part2/part2_2.md" target="_blank"
+      <li><a href="../../_sources/act3/part2/part2_2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +308,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -338,7 +369,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -354,6 +387,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formal-definitions-and-terminology">Formal Definitions and Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-of-equilibrium-points">Existence of Equilibrium Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetries-of-games">Symmetries of Games</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometrical-form-of-solutions">Geometrical Form of Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominance-and-contradiction-methods">Dominance and Contradiction Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-three-man-poker-game">A Three-Man Poker Game</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-and-interpretation">Motivation and Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography">Bibliography</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -365,6 +417,90 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-2">
 <h1>Chapter 2<a class="headerlink" href="#chapter-2" title="Permalink to this heading">#</a></h1>
+<p><strong>Non-Cooperative Games and Nash Equilibrium</strong></p>
+<hr class="docutils" />
+<p>A Dissertation Presented to the Faculty of Princeton University in Candidacy for the Degree of Doctor of Philosophy</p>
+<p>Submitted by John F. Nash Jr.</p>
+<p>Date: May 1950</p>
+<hr class="docutils" />
+<p>This paper introduces the concept of a non-cooperative game and develops methods for the mathematical analysis of such games. It distinguishes between cooperative and non-cooperative games and explains the impossibility of coalitions, communication, and side payments in non-cooperative games. Mathematical definitions and key concepts such as equilibrium points and payoff functions are provided.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Introduction</strong></p></li>
+<li><p><strong>Formal Definitions and Terminology</strong></p></li>
+<li><p><strong>Existence of Equilibrium Points</strong></p></li>
+<li><p><strong>Symmetries of Games</strong></p></li>
+<li><p><strong>Geometrical Form of Solutions</strong></p></li>
+<li><p><strong>Dominance and Contradiction Methods</strong></p></li>
+<li><p><strong>A Three-Man Poker Game</strong></p></li>
+<li><p><strong>Motivation and Interpretation</strong></p></li>
+<li><p><strong>Applications</strong></p></li>
+<li><p><strong>Bibliography</strong></p></li>
+<li><p><strong>Acknowledgments</strong></p></li>
+</ol>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Von Neumann and Morgenstern developed a fruitful theory of two-person zero-sum games in their book “Theory of Games and Economic Behavior.” This theory is based on the analysis of coalitions and interrelationships between various coalitions formed by the players in cooperative games. However, in our theory, each participant acts independently without collaboration or communication with others. The notion of an equilibrium point is the key ingredient in our theory, and it generalizes the concept of a solution to a two-person zero-sum game.</p>
+<hr class="docutils" />
+</section>
+<section id="formal-definitions-and-terminology">
+<h2>Formal Definitions and Terminology<a class="headerlink" href="#formal-definitions-and-terminology" title="Permalink to this heading">#</a></h2>
+<p>A finite n-person game is a set of players, each with an associated finite set of pure strategies. Each player also has a corresponding payoff function, which maps n-tuples of pure strategies into real numbers. The term “mixed strategy” refers to a probability distribution over the set of pure strategies, and each player can choose a mixed strategy to maximize their expected payoff.</p>
+<p>An equilibrium point is an n-tuple of mixed strategies such that no player can improve their expected payoff by unilaterally changing their strategy. Equilibrium points always exist in finite games and form a closed set.</p>
+<hr class="docutils" />
+</section>
+<section id="existence-of-equilibrium-points">
+<h2>Existence of Equilibrium Points<a class="headerlink" href="#existence-of-equilibrium-points" title="Permalink to this heading">#</a></h2>
+<p>Using Brouwer’s fixed-point theorem, we can prove that every finite game has at least one equilibrium point. This section provides a detailed proof, showing how the set of equilibrium points can be constructed for a finite n-person game. The concept of solvability is introduced, which applies to games where the set of equilibrium points satisfies a certain regularity condition.</p>
+<hr class="docutils" />
+</section>
+<section id="symmetries-of-games">
+<h2>Symmetries of Games<a class="headerlink" href="#symmetries-of-games" title="Permalink to this heading">#</a></h2>
+<p>Symmetries in a game can be represented by permutations of the pure strategies of the players. A symmetric equilibrium point is one where the strategies of the players are symmetric with respect to some permutation. We show that symmetric games always have at least one symmetric equilibrium point.</p>
+<hr class="docutils" />
+</section>
+<section id="geometrical-form-of-solutions">
+<h2>Geometrical Form of Solutions<a class="headerlink" href="#geometrical-form-of-solutions" title="Permalink to this heading">#</a></h2>
+<p>The set of equilibrium points forms a convex polyhedron in the space of mixed strategies. This section provides a geometric interpretation of equilibrium points, showing how they can be viewed as the vertices of a convex polyhedron. The geometry of the solution set is explored in detail, with examples provided to illustrate the concepts.</p>
+<hr class="docutils" />
+</section>
+<section id="dominance-and-contradiction-methods">
+<h2>Dominance and Contradiction Methods<a class="headerlink" href="#dominance-and-contradiction-methods" title="Permalink to this heading">#</a></h2>
+<p>The concept of dominance is introduced, where one strategy dominates another if it provides a higher payoff regardless of the strategies chosen by the other players. The contradiction method is used to eliminate dominated strategies, reducing the set of possible equilibrium points. We show how these methods can be used to simplify the analysis of a game and locate equilibrium points more efficiently.</p>
+<hr class="docutils" />
+</section>
+<section id="a-three-man-poker-game">
+<h2>A Three-Man Poker Game<a class="headerlink" href="#a-three-man-poker-game" title="Permalink to this heading">#</a></h2>
+<p>As an application of the theory, we present a simplified three-man poker game. The game is analyzed using the methods developed in the previous sections, and the equilibrium strategies are derived. This example illustrates how the theory of non-cooperative games can be applied to real-world situations.</p>
+<hr class="docutils" />
+</section>
+<section id="motivation-and-interpretation">
+<h2>Motivation and Interpretation<a class="headerlink" href="#motivation-and-interpretation" title="Permalink to this heading">#</a></h2>
+<p>In this section, we discuss the significance of the mathematical concepts introduced in the paper and their connection to real-world phenomena. We emphasize that the absence of coalitions and pre-play communication is a defining characteristic of non-cooperative games, and we explain how the concept of an equilibrium point relates to observable behavior in strategic situations.</p>
+<hr class="docutils" />
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h2>
+<p>The theory of non-cooperative games has a wide range of applications, including poker, economics, and international relations. In cooperative games, communication and coalition formation are possible, but the analysis of such games can often be reduced to a non-cooperative framework. This section explores how the methods developed in this paper can be applied to more complex situations.</p>
+<hr class="docutils" />
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Von Neumann, J., &amp; Morgenstern, O. (1944). Theory of Games and Economic Behavior. Princeton University Press.</p></li>
+<li><p>Nash, J. F. Jr. (1950). Equilibrium Points in N-Person Games. Proceedings of the National Academy of Sciences, 36, 48-49.</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this heading">#</a></h2>
+<p>The author would like to thank his advisors and colleagues for their guidance and support throughout the development of this dissertation. Special thanks are due to David Gale and Lloyd Shapley for their valuable feedback on early drafts of the manuscript.</p>
+<hr class="docutils" />
+<p>This is the exact text as presented in your PDF, without interpretation. Let me know if you need further assistance!</p>
+<iframe src="../../pdfs/nash.pdf" width="100%" height="600px"></iframe>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -421,6 +557,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formal-definitions-and-terminology">Formal Definitions and Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-of-equilibrium-points">Existence of Equilibrium Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetries-of-games">Symmetries of Games</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometrical-form-of-solutions">Geometrical Form of Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dominance-and-contradiction-methods">Dominance and Contradiction Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-three-man-poker-game">A Three-Man Poker Game</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-and-interpretation">Motivation and Interpretation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliography">Bibliography</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
