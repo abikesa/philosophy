@@ -259,6 +259,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/abikesa/template/main?urlpath=tree/book/website/act3/part3/part3_2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -267,7 +298,7 @@
       
       
       
-      <li><a href="../../_sources/act3/part3/part3_2.md" target="_blank"
+      <li><a href="../../_sources/act3/part3/part3_2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +308,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -365,6 +396,66 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-2">
 <h1>Chapter 2<a class="headerlink" href="#chapter-2" title="Permalink to this heading">#</a></h1>
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/DWwppYEEdcI?start=454" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+</iframe>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text"><em>Dead shepherd, now I see thy saw of might: whoever danced that danced not at first listening!</em> Revolutionary in virutally every aspect. Orchestration of this heroic magnitude. Syncopated groove. Postprimary dominants worthy of R&amp;B. Move over Mozart, we’re coming all the way from the depths of <em>Inferno</em>, to the horizon where we perceive some light in <em>Limbo</em>. But we aspire for <em>Paradiso</em>. Yes, yes, Napoleon disappointed. But what of that? We are romantics through and through! Let’s get to my favorite part … Nothing ever like <code class="docutils literal notranslate"><span class="pre">7:34</span> <span class="pre">-</span> <span class="pre">9:00</span></code> in the history of symphonic music!</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Directed&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Tradition&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Innovation&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Revolution&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tension in Bow (Inherited &amp; Added Constraints) +</span><span class="se">\n</span><span class="s2"> Release of Arrow (For Loftiest Goals)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/7b60c33ca58d75afde70508aecb13f26a322ff0cd399fa2710214e769a7d627d.png" src="../../_images/7b60c33ca58d75afde70508aecb13f26a322ff0cd399fa2710214e769a7d627d.png" />
+</div>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text"><em>NWA: Nine Worthy Artists</em>. <code class="docutils literal notranslate"><span class="pre">Traditional</span></code>: Da Vinci, Bach, Fyodor; Innovative: Raphael, Amadeus, Nietzsche; Revolutionary: Michelangelo, Ludwig, Karl. They represent the visual, auditory, and literary mediums of expression. A fractal &amp; cosmic geometry is at the heart of the traditional artists. Few would need convincing about this claim with regard to Da Vinci &amp; Bach. But Fyodor Dostoevsky? The clue is his autobiographical <a class="reference external" href="https://www.gutenberg.org/cache/epub/2197/pg2197-images.html">The Gambler</a> - “For why is gambling a whit worse than any other method of acquiring money? How, for instance, is it worse than trade? True, out of a hundred persons, only one can win; yet what business is that of yours or of mine?” or “I think that roulette was devised specially for Russians.” What is common among the innovators is their prankishness, which is their way of expressing freedom in fetters or <a class="reference external" href="https://www.gutenberg.org/cache/epub/37841/pg37841-images.html">dancing in chains</a>. They do not mock their traditions with any moral gravity; instead, they embrace them like sponges, and then prank them with the lightest of touches. So this brings us to the revolutionaries. For these, only look to <a class="reference external" href="https://abikesa.github.io/mozart/act3/part3.html">David</a>, <a class="reference external" href="https://www.youtube.com/watch?v=DWwppYEEdcI">Eroica</a>, and the Manifesto.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 
     <script type="text/x-thebe-config">
