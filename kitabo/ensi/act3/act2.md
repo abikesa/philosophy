@@ -4,7 +4,7 @@
 
 ```{admonition} Jessica Alba, CEO
 :class: Note
-_Paradiso_. A cooperative equilibrium requires a setting of monotheism or one with an übermensch. A leader of a company whose product is for a niche market has no data to work with. The employees have to trust your instincts for the next operational and strategic steps. This is a challenge if the employees aren't used to being commanded by someone who differs from their stereotypical boss on the basis of sex, race, age, etc.
+_Paradiso_. A cooperative equilibrium requires a setting of monotheism or one with an übermensch. A leader of a company whose product is so [disruptive](https://en.wikipedia.org/wiki/Jessica_Alba#The_Honest_Company) has no data to work with. The employees have to trust your instincts for the next operational and strategic steps. This is a challenge if the employees aren't used to being commanded by someone who differs from their stereotypical boss on the basis of sex, race, age, etc.
 ```
 
 
