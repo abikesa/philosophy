@@ -231,7 +231,7 @@ In critique, Nietzsche’s concept is highly applicable to formal or classical a
 
 So, in nearly all art forms, the notion of constraint fueling creativity holds. Even when artists strive to break free from established norms, they often end up creating new structures, whether consciously or unconsciously. The "dancing in chains" metaphor reflects how mastery and invention are often born from wrestling with boundaries—those given to us by tradition, society, or even our medium itself.
 
-## 15  
+## 15 🇺🇸 
 
 ```{admonition} [American Graffiti](https://en.wikipedia.org/wiki/American_Graffiti)
 :class: danger  
