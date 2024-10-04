@@ -1,5 +1,11 @@
 # Act 2
 
+            1. Strategy, σ
+                          \
+         2. Payoff, Ψ  -> 4. Communication, Δ -> 5. Leadership, τ -> 6. Growth, Ω 
+                          /
+                          3. Equilibrium, ε
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zY9KZyJ1EiI?start=1550" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```{admonition} Jessica Alba, CEO
