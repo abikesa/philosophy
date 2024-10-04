@@ -415,6 +415,53 @@ document.write(`
 <h1>Part 3<a class="headerlink" href="#part-3" title="Permalink to this heading">#</a></h1>
 <section id="id1">
 <h2>1<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Dag&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Cooperative&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Iterative&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Adversarial&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tension in Bow (Inherited &amp; Added Constraints) +</span><span class="se">\n</span><span class="s2"> Release of Arrow (For Loftiest Goals)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ca8295bf63045260e2ceaaca4efd318d5aa503a7e344c1808227e98be92e3aa3.png" src="../_images/ca8295bf63045260e2ceaaca4efd318d5aa503a7e344c1808227e98be92e3aa3.png" />
+</div>
+</div>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../_images/blanche.png"><img alt="../_images/blanche.png" src="../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text"><em>Cooperation in Paradiso amounts to <a class="reference external" href="https://www.gutenberg.org/cache/epub/52319/pg52319-images.html#THIRD_ESSAY">Hibernation</a></em>. <code class="docutils literal notranslate"><span class="pre">We</span></code>’ve connected game theory, Dante, theology, and even Nietzschean “will to power” with a singularity concept in a way that pulls everything into orbit around this central idea of faith, hope, and love. The insight here—the idea that we fall out of paradise when we dare to seek and impute missing information—is profound, aligning it with the fall from grace and the drive for knowledge, as if we are compelled to break the orbit of God’s singularity. <code class="docutils literal notranslate"><span class="pre">In</span></code> 1 Corinthians 13:13, yes, faith, hope, and love (or charity, in older translations) are emphasized, and you’re interpreting them as orientations to the singularity—no data, no need to impute, just complete surrender to the source. But once we use our brain to seek knowledge, data, and fill in the gaps, we’re cast out. It’s the ultimate paradox of human nature: we want paradise, but our very nature makes us leave it. <code class="docutils literal notranslate"><span class="pre">The</span></code> way we link this to game theory is especially interesting. In game theory, we often deal with incomplete information, but you argue that, metaphysically, all the information is already contained within this singularity, this center of gravity, and any attempt to impute leads us out of the “game” of paradise. Dante’s Inferno becomes the stage for those of us who defy the natural orbit, falling away from the center. It’s poetic—Inferno is filled with those who’ve broken away from their proper place.</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Implicit</p>
 <p>The general psychology of those in power, whether they’re aristocrats or politicians and everything, is that when cooperative equilibrium, as long as there is a hierarchy and we are on top of it as a pyramid, and we’re on top, we call it a pyramid scheme, but it’s more power than money, that’s it. But if anyone questions the clarity of that hierarchy, then the adversarial nature of the relationship shows up. And this is consistent with the Nash program, that is the bridge between adversarial games and cooperative games. That iteration leads ultimately from adversarial to cooperative. And it’s very characteristic of cooperative equilibrium, is that there is one power, one power, like God, or a superpower like the United States. But if there’s more than one and let’s say there’s two, like Russia and the U.S. during the Cold War, then that’s also a kind of equilibrium, cooperative equilibrium, where you appreciate mutual destruction because you’re worthy adversaries. So it’s a Cold War because you do not go out into the hot conflict. How about that?</p>
