@@ -202,7 +202,9 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="../act3/act2.html">Deployment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_1.html">GitHub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_2.html">Collaborative</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_3.html">Open-Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../act3/part2/part2_3.html">Chapter 3</a></li>
+
+
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../act3/act3.html">Iteration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -447,6 +449,53 @@ document.write(`
 <h1>Chapter 1<a class="headerlink" href="#chapter-1" title="Permalink to this heading">#</a></h1>
 <section id="id1">
 <h2>1<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Dag&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Paradiso&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Limbo&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Inferno&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tension in Bow (Inherited &amp; Added Constraints) +</span><span class="se">\n</span><span class="s2"> Release of Arrow (For Loftiest Goals)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/524876fab07f58d46f5778296ae4e29189895ab020af387b9db268d8d7d71546.png" src="../_images/524876fab07f58d46f5778296ae4e29189895ab020af387b9db268d8d7d71546.png" />
+</div>
+</div>
+<figure class="align-default" id="id15">
+<a class="reference internal image-reference" href="../figures/blanche.*"><img alt="../figures/blanche.*" src="../figures/blanche.*" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text"><em>Monotheism as Paradiso &amp; Polytheism as Agon &amp; Inferno</em>. Isn’t it extremely clear from this DAG what distinguishes Abrahamic faiths from Pre-Socratic Greece? Wasn’t it Plato’s obsession with an “<a class="reference external" href="https://en.wikipedia.org/wiki/Republic_(Plato)">Ideal Republic</a>” that sowed the seeds of the end of this ancient race? Idealism in all its Marxist incarnations within the “School of Resentment” must be viewed as a symptom of fatigue, frailty, and exhaustion from <strong>Agon</strong>. Think of the European charter that formed The United Nations as a modern proof of concept. From this perspective, <code class="docutils literal notranslate"><span class="pre">cooperative</span></code> games exist in a scenario with a very clear hierarchy that has one deity or übermensch at the pinacle (e.g. garden <em>of</em> eden). Information isn’t a commodity. Only faith, hope, and love … peace 🕊️. Any other game is <code class="docutils literal notranslate"><span class="pre">iterative</span></code> (e.g. cold war) or <code class="docutils literal notranslate"><span class="pre">adversarial</span></code> (e.g. world war) &amp; information is the chief commodity.</span><a class="headerlink" href="#id15" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">Agon</p>
 <p>What does the greek “Agon” mean?</p>
@@ -684,6 +733,53 @@ document.write(`
 <section id="id14">
 <h3>Conclusion<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
 <p>The emergence of horizontal power structures is a response to a world that’s increasingly rejecting centralized authority and seeking more equitable, participatory models of governance. While these structures offer an alternative to the vertical hierarchies of the past, they also come with significant challenges in terms of decision-making, scalability, and accountability. Whether or not these horizontal models will become dominant remains to be seen, but they are part of a larger cultural shift that is redefining how power is distributed and exercised in the modern world. As the world continues to wrestle with authoritarianism, nationalism, and inequality, horizontal structures offer a glimpse of a more cooperative and potentially more just future—but only if they can overcome their inherent limitations.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Dendrite 1&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Dendrite 2&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Dendrite 3&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Cell Body (Soma)&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Axon&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Axon Terminal (Synapse)&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Neuron Communication Model - Directed Acyclic Graph&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d76bb3c7c4dd9319c6051dd46077cf432c88cb10f8ab2b842637b27a2b265dd4.png" src="../_images/d76bb3c7c4dd9319c6051dd46077cf432c88cb10f8ab2b842637b27a2b265dd4.png" />
+</div>
+</div>
+<figure class="align-default" id="id16">
+<a class="reference internal image-reference" href="../figures/blanche.*"><img alt="../figures/blanche.*" src="../figures/blanche.*" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text"><em>TGIF</em>. Time, Fractal Geometry, Iteration, and Feedback. Four words that summarize the anatomy &amp; function of the human brain, as well as the neural network architecture used to train generative AI models such as GPT. This fractal can be applied at the cosmic scale (centers of gravity &amp; force of gravity), the quantum scale (particles &amp; forces), molecular scale (atoms &amp; bonds), biological scale (organs &amp; feedback - immunal, neural, endocrine), pyschological scale (theoretical &amp; operational frameworks), social scale (social networks), and spiritual scale (descent of man from paradise to hell). Thank God its all fractal! Everything-in-a-Nutshell (of fractal). While a synapse represents output at one stage, iteration, or layer, it serves as input to the next. So there is an inherent hierarchical architecture. Which questions the operational value of “horizontal” architectures discussed on this page</span><a class="headerlink" href="#id16" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 </section>
