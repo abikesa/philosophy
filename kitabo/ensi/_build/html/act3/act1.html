@@ -432,8 +432,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p><strong>Resource allocation</strong>: How much of a resource is gained or lost when players cooperate or defect?</p></li>
 <li><p><strong>Utility functions</strong>: Mathematical functions representing preferences, satisfaction, or outcomes for players.</p></li>
-<li><p><strong>Statistical or probabilistic outcomes</strong>: Random factors that influence the payoff, especially in uncertain or risky situations.</p></li>
-<li><p><strong>Real-world examples</strong>: Payoffs derived from actual scenarios like business deals, wars, negotiations, etc.</p></li>
+<li><p><strong>Statistical or probabilistic outcomes</strong>: Random factors that influence the payoff, especially in uncertain or risky situations.<strong>Real-world examples</strong>: Payoffs derived from actual scenarios like business deals, wars, negotiations, etc. could help set baselines for simulations.</p></li>
 </ol>
 <p>Let’s now build a <a class="reference external" href="https://www.youtube.com/watch?v=STBSaDn_q8g">resource-driven</a> example where payoffs are not arbitrary but <strong>calculated</strong> from specific interactions.</p>
 <hr class="docutils" />
@@ -453,6 +452,53 @@ document.write(`
 <section id="step-3-compute-the-payoff-matrix">
 <h2>Step 3: Compute the Payoff Matrix<a class="headerlink" href="#step-3-compute-the-payoff-matrix" title="Permalink to this heading">#</a></h2>
 <p>From the resource-sharing setup above, we can now <strong>compute</strong> the payoffs. The key here is that these numbers aren’t arbitrary; they reflect specific interactions and consequences.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Strategy&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Payoff&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Equilibrium&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Cooperative&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Iterative&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Adversarial&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Resources-Inputs, Utility-Operations, Statistical-Distributions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bc3237c59e9c54a167ff1141b394415145b05d9590da62d9616456d39fab9cdd.png" src="../_images/bc3237c59e9c54a167ff1141b394415145b05d9590da62d9616456d39fab9cdd.png" />
+</div>
+</div>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/blanche.png"><img alt="../_images/blanche.png" src="../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text"><em>Payoffs</em> Adversaries with substantively greater resources wouldn’t consider you “worthy” of iterative games. Instead, the strategy would be to coerce you towards “cooperation” by social invasion of your space, psychological decapitation of your leaders, and existential threats to your children and women. When there’s insufficient information to tell whether you’re worthy, then the strategy would be to test you via adversarial games &amp; deployment of your best operative maneouvers. Should you prove worthy, then iterative games may ensure – otherwise you’ll be dominated, subdued, and invited to sign instruments of surrender. Know thyself!</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
