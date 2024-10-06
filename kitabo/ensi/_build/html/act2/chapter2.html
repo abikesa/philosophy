@@ -259,6 +259,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/abikesa/template/main?urlpath=tree/book/website/act2/chapter2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -267,7 +298,7 @@
       
       
       
-      <li><a href="../_sources/act2/chapter2.md" target="_blank"
+      <li><a href="../_sources/act2/chapter2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +308,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -382,6 +413,53 @@ document.write(`
 <h1>Chapter 2<a class="headerlink" href="#chapter-2" title="Permalink to this heading">#</a></h1>
 <section id="id1">
 <h2>1<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Directed&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Cooperative&#39;</span><span class="p">,</span> 
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Iterative&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Adversarial&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Draw the graph with neuron-like labels</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tension in Bow (Inherited &amp; Added Constraints) +</span><span class="se">\n</span><span class="s2"> Release of Arrow (For Loftiest Goals)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/54a7d4cee59fc9f6d2c49877fe61da5cf0e33431bc6a9574c2e2cfa3b763c1af.png" src="../_images/54a7d4cee59fc9f6d2c49877fe61da5cf0e33431bc6a9574c2e2cfa3b763c1af.png" />
+</div>
+</div>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../figures/blanche.*"><img alt="../figures/blanche.*" src="../figures/blanche.*" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text"><em>Agon &amp; Inferno</em>. Elite Universities excel at games &amp; competitions that are scarce. Their students have access to the sort of <code class="docutils literal notranslate"><span class="pre">information</span></code> about sports like Rugby, Lacross, Soccer, Rowing, and Fencing from early teenage. These adversarial strategy works &amp; they get to dominate the US olympics team in these categories. How else to have distinction beyond the academics? Certainly not in sports with fewer information asymmetries across the social spectrum.</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="tip admonition">
 <p class="admonition-title">The Hidden Strategy of Elite Universities</p>
 <p>In which book does Malcolm Gladwell make the claim that Harvard tries to maintain distinction, not really distinction, but just pretty much keep the university white? By recruiting athletes who play games that are scarce. Basically, the odds that an American plays those games are long, and if the odds that an American plays a game are long, those people are white, definitely. So if Harvard really gives scholarships to this kind of people, then the percentage of white people at Harvard is going to be safe from the Asian invasion.</p>
