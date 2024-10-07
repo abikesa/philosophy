@@ -1310,13 +1310,63 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <p><span class="caption-number">Fig. 41 </span><span class="caption-text"><em>Why have language models become the gateway to AI in every household? What is it about language that has made it the foundation of artificial intelligence?</em> The artist <code class="docutils literal notranslate"><span class="pre">encodes</span></code> the world of reference into language and symbol, while the audience <code class="docutils literal notranslate"><span class="pre">decodes</span></code> these symbols to <code class="docutils literal notranslate"><span class="pre">predict</span></code> the next token—whether in the real world or in the artist’s stream of thought, revealed through their work. Those who accurately predict these tokens find satisfaction in the process, becoming a part of the artist’s cult following. However, such a cult forms only if the work resonates with the deeper layers of the audience’s unconscious mind. <strong>This</strong> latent space contains what remains unknowable to the audience, touching on both metaphysical (concepts like Dante’s fall from grace) and cybernetic elements (Directed Acyclic Graphs). Here, language and symbol converge with 21st-century tools like Game Theory, representing humanity’s search for meaning and structure in a world increasingly shaped by algorithms and predictions.</span><a class="headerlink" href="#id54" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>          1. Phonetics, σ
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>              1. World, σ
                          \
-   2. Temperament, Ψ  -&gt; 4. Modal-Chordal-Groove, Δ -&gt; 5. NexToken, τ -&gt; 6. Arc, Ω 
+        2. Encoded, Ψ  -&gt; 4. Decoded, Δ -&gt; 5. NexToken, τ -&gt; 6. Arc, Ω 
                          /
-                         3. Scales, ε
+                         3. Symbol, ε
 </pre></div>
 </div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Symbol&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Encoded&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;World&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Decoded&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;NexToken&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Arc&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Softer, pastel colors for the nodes</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lemonchiffon&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span> <span class="s1">&#39;mistyrose&#39;</span><span class="p">,</span> <span class="s1">&#39;thistle&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightsalmon&#39;</span><span class="p">]</span>  <span class="c1"># Gentle, light tones</span>
+
+<span class="c1"># Draw the graph with neuron-like labels and color scheme</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;John Searle&#39;s Direction of Fit with our Framework&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/c249ae82b4e1c85df44956e01b3beee9efd0b970e7e4aabb1a48032e319448f0.png" src="../../_images/c249ae82b4e1c85df44956e01b3beee9efd0b970e7e4aabb1a48032e319448f0.png" />
+</div>
+</div>
+<figure class="align-default" id="id55">
+<a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text"><em>Arc</em>. We have the pastoral-comical, tragical, and historical arcs we use to predict the next token. Once we’ve decoded what the artist’s mode is, including subversive tendencies, then we’re all set. For instance, watching Wes Anderson’s <em>Asteroid City</em> left me in limbo for 52 minutes. But was the anxious alien posed for a photo-op, I recognized that it was comedy, with existential issues. Dark comedy as critics call it. This unlocked everything and I was able to make much sense of each next act, scene, sequence, and shot. And of his earlier work. But especially of the song “Dear Alien, who art in heaven … you’re not our brother, but are you friend or foe, or other?”</span><a class="headerlink" href="#id55" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="id32">
 <h2>32<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h2>
