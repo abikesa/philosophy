@@ -492,7 +492,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">27</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">28</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">Jupyter</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">29</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">30</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wes-anderson">Wes Anderson</a></li>
@@ -1200,18 +1204,126 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <section id="id28">
 <h2>28<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h2>
 <div class="seealso admonition">
-<p class="admonition-title">Is</p>
-<p>Is</p>
+<p class="admonition-title">Beyond Reproach</p>
+<p>What is the authentic memory of the Holocaust?</p>
 </div>
-<p>Is</p>
+<p>Finkelstein rose to prominence in 2000 after publishing The <a class="reference external" href="https://en.wikipedia.org/wiki/The_Holocaust_Industry">Holocaust Industry</a>, a book in which he writes that the memory of the Holocaust is exploited as an ideological weapon to provide Israel a degree of immunity from criticism.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Directed&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;World Order&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Neglected&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Punishment&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Softer, pastel colors for the nodes</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lemonchiffon&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span> <span class="s1">&#39;mistyrose&#39;</span><span class="p">,</span> <span class="s1">&#39;thistle&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightsalmon&#39;</span><span class="p">]</span>  <span class="c1"># Gentle, light tones</span>
+
+<span class="c1"># Draw the graph with neuron-like labels and color scheme</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Anglo-Saxon World Order: 1945-Present&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/0c8db5e0e8ea0a2202c73a664834c535984188c9030d28adb293d2915a24d705.png" src="../../_images/0c8db5e0e8ea0a2202c73a664834c535984188c9030d28adb293d2915a24d705.png" />
+</div>
+</div>
+<figure class="align-default" id="id53">
+<a class="reference internal image-reference" href="blanche.*"><img alt="blanche.*" src="blanche.*" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text"><em>The Prism of Dante’s Allegory</em>. When we deploy a framework (directed acyclic graph), to help us view games (cooperative, iterative, adversarial), through the prism of Dante’s allegory (paradiso, limbo, inferno), laced with the triangle of reference (world, encoded, symbol - by artist; symbol, decoded, nextoken - by audience), then we can empathize with the predictions of Norman Finkelstein. First, a world order represents a cooperative equilibrium dominated by a monolith, monopoly, monarchy, or monotheism. Thanks to a <code class="docutils literal notranslate"><span class="pre">benevolence</span></code> of the “one-and-only”, who could do much worse things, being omnipotent, and omniscient, we could only have but <code class="docutils literal notranslate"><span class="pre">faith</span></code>, hope, love, … peace 🕊️. Second, threats to this world order are dealt with by the “one-and-only” as swiftly &amp; decisively as they were with the original sin –and all sins since. Third, a list of the 10-commandments has been engraved that you’ll not plead ingorance in your <a class="reference external" href="https://www.gutenberg.org/cache/epub/67363/pg67363-images.html">actions</a>.</span><a class="headerlink" href="#id53" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N9v6VJLZ8_I?start=131" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>But let’s remember the genocides that have happened across the world since 1945 and ask why they haven’t captured our attention as much. Does the world order have some favored sons &amp; daughters? Or is it the responsibility of the sons &amp; daughters to find a sympathetic audience?</p>
+<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p>Year</p></th>
+<th class="text-left head"><p>Country</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1915</p></td>
+<td class="text-left"><p>Armenia (Ottoman Empire)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1932</p></td>
+<td class="text-left"><p>Ukraine (Holodomor)</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>1941</p></td>
+<td class="text-left"><p>Nazi Germany (Holocaust)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1975</p></td>
+<td class="text-left"><p>Cambodia (Khmer Rouge)</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>1994</p></td>
+<td class="text-left"><p>Rwanda</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1995</p></td>
+<td class="text-left"><p>Bosnia and Herzegovina (Srebrenica)</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>1998</p></td>
+<td class="text-left"><p>Democratic Republic of the Congo (Second Congo War)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2003</p></td>
+<td class="text-left"><p>Darfur (Sudan)</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2014</p></td>
+<td class="text-left"><p>Iraq (Yazidis)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2017</p></td>
+<td class="text-left"><p>Myanmar (Rohingya)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">#</a></h3>
+<p><img alt="" src="../../_images/wwii_deaths.svg" /></p>
+</section>
+<section id="jupyter">
+<h3>Jupyter<a class="headerlink" href="#jupyter" title="Permalink to this heading">#</a></h3>
+<figure class="align-default">
+<a class="reference internal image-reference" href="wwii_deaths.svg"><img alt="wwii_deaths.svg" src="wwii_deaths.svg" width="100%" /></a>
+</figure>
+</section>
 </section>
 <section id="id29">
 <h2>29<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h2>
 <div class="important admonition">
-<p class="admonition-title">More</p>
-<p>More</p>
+<p class="admonition-title"><a class="reference external" href="https://en.wikipedia.org/wiki/World_War_II_casualties#/media/File:World_War_II_Casualties.svg">Attention is all you need</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Norman_Finkelstein#Early_life_and_education">Norman Finkelstein</a> has said of his parents that “they saw the world through the prism of the Nazi Holocaust. They were eternally indebted to the Soviet Union (to whom they attributed the defeat of the Nazis), and so anyone who was anti-Soviet they were extremely harsh on”.</p>
 </div>
-<p>More</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>      1. Holocaust, σ
+                     \
+    2. Parents, Ψ  -&gt; 4. Finkelstein, Δ -&gt; 5. Hamas, τ -&gt; 6. R2P, Ω 
+                     /
+                     3. Soviets, ε
+</pre></div>
+</div>
 </section>
 <section id="id30">
 <h2>30<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h2>
@@ -1250,10 +1362,10 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <p>Yes, Wes Anderson is a master of using nested narratives. Films like <em>The Grand Budapest Hotel</em> are great examples, where you have a story told by an author recounting his meeting with a hotel owner, who in turn tells the story of his youth. Anderson’s use of this technique often adds to the whimsical, storybook quality of his films, making them feel like intricate, multilayered tales. It gives his films a certain charm, while also creating deeper layers of meaning and perspective.</p>
 <p>Which of his films stands out to you the most in terms of this narrative style?</p>
 <p>Do you know anything about the Triangle of Reference? Well, it looks like the idea is from authors that influenced Wes Anderson during his Bachelor of Philosophy studies at University of Texas. Now, when I look at this stuff, it makes sense, but it just reminds me of, I don’t know, is it St. John or is it Genesis? I can’t remember which, but it says, in the beginning was the Word, the Word was with God, and the Word was God. So, in the beginning was the Word, that would be Symbol. The Word was with God, that would be Author. And the Word was God, that would be the World, or Reference. So, there’s your Triangle.</p>
-<figure class="align-default" id="id53">
+<figure class="align-default" id="id54">
 <a class="reference internal image-reference" href="../../_images/triangle_reference.png"><img alt="../../_images/triangle_reference.png" src="../../_images/triangle_reference.png" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 40 </span><span class="caption-text"><em><a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_of_reference">Triangle of Reference</a></em>. Symbol (Beginning), Author (With),  Referent (God) - John 1:1. The author, the subject, the everything.</span><a class="headerlink" href="#id53" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text"><em><a class="reference external" href="https://en.wikipedia.org/wiki/Triangle_of_reference">Triangle of Reference</a></em>. Symbol (Beginning), Author (With),  Referent (God) - John 1:1. The author, the subject, the everything.</span><a class="headerlink" href="#id54" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>You’re absolutely onto something interesting by connecting the Triangle of Reference to that biblical passage. The Triangle of Reference, often associated with semiotics and linguistics, describes the relationship between a symbol (word), its referent (the thing in the world), and the thought or concept that connects them. Your analogy to “In the beginning was the Word” is an insightful interpretation of how meaning is constructed.</p>
@@ -1318,10 +1430,10 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <img alt="../../_images/7b1df2109103677817efc203eecdd808a0ac2ec456658dcc584f9b968d327423.png" src="../../_images/7b1df2109103677817efc203eecdd808a0ac2ec456658dcc584f9b968d327423.png" />
 </div>
 </div>
-<figure class="align-default" id="id54">
+<figure class="align-default" id="id55">
 <a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 41 </span><span class="caption-text"><em>Why have language models become the gateway to AI in every household? What is it about language that has made it the foundation of artificial intelligence?</em> The artist <code class="docutils literal notranslate"><span class="pre">encodes</span></code> the world of reference into language and symbol, while the audience <code class="docutils literal notranslate"><span class="pre">decodes</span></code> these symbols to <code class="docutils literal notranslate"><span class="pre">predict</span></code> the next token—whether in the real world or in the artist’s stream of thought, revealed through their work. Those who accurately predict these tokens find satisfaction in the process, becoming a part of the artist’s cult following. However, such a cult forms only if the work resonates with the deeper layers of the audience’s unconscious mind. <strong>This</strong> latent space contains what remains unknowable to the audience, touching on both metaphysical (concepts like Dante’s fall from grace) and cybernetic elements (Directed Acyclic Graphs). Here, language and symbol converge with 21st-century tools like Game Theory, representing humanity’s search for meaning and structure in a world increasingly shaped by algorithms and predictions.</span><a class="headerlink" href="#id54" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text"><em>Why have language models become the gateway to AI in every household? What is it about language that has made it the foundation of artificial intelligence?</em> The artist <code class="docutils literal notranslate"><span class="pre">encodes</span></code> the world of reference into language and symbol, while the audience <code class="docutils literal notranslate"><span class="pre">decodes</span></code> these symbols to <code class="docutils literal notranslate"><span class="pre">predict</span></code> the next token—whether in the real world or in the artist’s stream of thought, revealed through their work. Those who accurately predict these tokens find satisfaction in the process, becoming a part of the artist’s cult following. However, such a cult forms only if the work resonates with the deeper layers of the audience’s unconscious mind. <strong>This</strong> latent space contains what remains unknowable to the audience, touching on both metaphysical (concepts like Dante’s fall from grace) and cybernetic elements (Directed Acyclic Graphs). Here, language and symbol converge with 21st-century tools like Game Theory, representing humanity’s search for meaning and structure in a world increasingly shaped by algorithms and predictions.</span><a class="headerlink" href="#id55" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>              1. World, σ
@@ -1375,10 +1487,10 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <img alt="../../_images/c249ae82b4e1c85df44956e01b3beee9efd0b970e7e4aabb1a48032e319448f0.png" src="../../_images/c249ae82b4e1c85df44956e01b3beee9efd0b970e7e4aabb1a48032e319448f0.png" />
 </div>
 </div>
-<figure class="align-default" id="id55">
+<figure class="align-default" id="id56">
 <a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 42 </span><span class="caption-text"><em>Arc</em>. We have the pastoral-comical, tragical, and historical arcs we use to predict the next token. Once we’ve decoded what the artist’s mode is, including subversive tendencies, then we’re all set. For instance, watching Wes Anderson’s <em>Asteroid City</em> left me in limbo for 52 minutes. But was the anxious alien posed for a photo-op, I recognized that it was comedy, with existential issues. Dark comedy as critics call it. This unlocked everything and I was able to make much sense of each next act, scene, sequence, and shot. And of his earlier work. But especially of the song “Dear Alien, who art in heaven … you’re not our brother, but are you friend or foe, or other?”</span><a class="headerlink" href="#id55" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text"><em>Arc</em>. We have the pastoral-comical, tragical, and historical arcs we use to predict the next token. Once we’ve decoded what the artist’s mode is, including subversive tendencies, then we’re all set. For instance, watching Wes Anderson’s <em>Asteroid City</em> left me in limbo for 52 minutes. But was the anxious alien posed for a photo-op, I recognized that it was comedy, with existential issues. Dark comedy as critics call it. This unlocked everything and I was able to make much sense of each next act, scene, sequence, and shot. And of his earlier work. But especially of the song “Dear Alien, who art in heaven … you’re not our brother, but are you friend or foe, or other?”</span><a class="headerlink" href="#id56" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1978,7 +2090,11 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">27</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">28</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">28</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">Jupyter</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">29</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">30</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wes-anderson">Wes Anderson</a></li>
