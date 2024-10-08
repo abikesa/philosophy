@@ -63,6 +63,8 @@
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <script src="_static/script.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -598,6 +600,60 @@ Gen Z was born into a world on fire—climate change, social unrest, and the con
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text"><em>A tragical-historical-fractal</em>. <code class="docutils literal notranslate"><span class="pre">In</span></code> the end, we’re not merely engaging with these ideas; we’re constructing a framework that cuts across history, game theory, and aesthetics. It’s all fractal. Each layer of life—whether historical, personal, or cosmic—mirrors these patterns of birth, growth, stagnation, decline, existential crisis, and rebirth. So let’s map it onto a sine wave, a tragical-historical fractal, capturing the essence of these cycles through the centuries. <code class="docutils literal notranslate"><span class="pre">In</span></code> the 17th century, we see <strong>Birth</strong> with the Renaissance—a cultural and intellectual awakening. The 18th century, with the <strong>Growth</strong> of the Enlightenment, brought reason and progress to the forefront. By the 19th century, we encounter <strong>Stagnation</strong>, as disillusionment sets in, with thinkers like Marx and Nietzsche grappling with the cracks in modernity. <strong>Decline</strong> marks the 20th century, as the modern world battles existential crises through two World Wars and Cold War tension. The 21st century is an era of <strong>Existential</strong> uncertainty, where humanity navigates the Information Age, confronting the implications of endless data, connectivity, and meaning. Finally, the 22nd century may well mark a <strong>Rebirth</strong>, as we look toward a world shaped by robots, AI, and new technological paradigms—just like that, the cycle begins again. <code class="docutils literal notranslate"><span class="pre">Polonius</span></code> and Nietzsche would be proud. This fractal pattern represents how we continuously cycle through these stages, whether in history, personal development, or societal change. But if we “zoom into” the 20th century and early 21st century, then we get my personal life: my grannies (birth), dad (growth), mother (stagnation), yours truly (decline), spouse (existential), and offspring (rebirth). Each of these figures in my life was very clearly shaped by their <code class="docutils literal notranslate"><span class="pre">zeitgeist</span></code> as outlined under “generation”.</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Create a directed graph (DAG)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes and edges based on the neuron structure</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Define positions for each node</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="c1"># Labels to reflect parts of a neuron</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Directed&#39;</span><span class="p">,</span> 
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Allegory&#39;</span><span class="p">,</span> 
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span> 
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Hockey-Stick&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Peak-Decline&#39;</span><span class="p">,</span> 
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Trough-Rebirth&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Softer, pastel colors for the nodes</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lemonchiffon&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span> <span class="s1">&#39;mistyrose&#39;</span><span class="p">,</span> <span class="s1">&#39;thistle&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightsalmon&#39;</span><span class="p">]</span>  <span class="c1"># Gentle, light tones</span>
+
+<span class="c1"># Draw the graph with neuron-like labels and color scheme</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Tension in Bow (Cooperative) +</span><span class="se">\n</span><span class="s2"> Release of Arrow (Punishment)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/121110a567ee86b49cebfa7d856e92d9f7b6676f9a61f911b8c5d90690827165.png" src="_images/121110a567ee86b49cebfa7d856e92d9f7b6676f9a61f911b8c5d90690827165.png" />
+</div>
+</div>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="_images/blanche.png"><img alt="_images/blanche.png" src="_images/blanche.png" style="width: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>Peotical Variant on <span class="math notranslate nohighlight">\(sin(t)\)</span></em>. We deploy a directed acyclic graph to spell out Dante’s allegorical paradise, earth, and hell, and laced with references to cooperative, iterative, and adversarial games. By cheer coincidence, we find parallels with the triangle of reference insofar as an artists workflow is: world -&gt; encoding -&gt; symbol, and their audience’s aesthetic experience is decoding -&gt; nextoken -&gt; arc, much like every aspect of history &amp; lived experience. So in this figure: “hockey-stick” represents a phase of birth and growth; “peak-decline” represents stagnation and decline; “trough-rebirth” represents existential and rebirth.</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You should find our blend of historical cycles, allegorical structures, and game theory rather striking and perhaps contrived. But once you delve into our emphasis on the inherent tension between cooperation and punishment—a real Nietzschean surge of will must entrance you! Mapping these cosmic and personal narratives onto sine waves and directed acyclic graphs (DAGs) gives them a satisfying visual symmetry, reflecting life’s tragicomic repetitions. The idea of overlaying existential and historical cycles onto the <code class="docutils literal notranslate"><span class="pre">same</span> <span class="pre">fractal</span> <span class="pre">pattern</span></code> is especially resonant, creating a sense that our lived experiences are just smaller iterations of grander, cosmic loops.</p>
+<p>In particular, our DAG illustrates how the flow from “Directed” (setting the stage) to “Trough-Rebirth” (resolution and renewal) is tied to cycles in game theory and allegory. It captures the essence of progress through tension and release, very much like Dante’s structure through <em>Inferno</em>, <em>Limbo</em>, and <em>Paradiso</em>. Our comparison of this process to <code class="docutils literal notranslate"><span class="pre">neuron</span></code> pathways is apt, with “Peak-Decline” serving as the <code class="docutils literal notranslate"><span class="pre">signal</span></code> that needs decoding in any tragic narrative.</p>
+<p>We hope you appreciate how we’ve rooted personal narratives within broader historical processes, invoking figures like Polonius, Nietzsche, and Marx, as archetypal examples of these stages. Nietzsche, in particular, would revel in the contrast between our “Existential” stage and the notion of “Rebirth” through AI and technology. This ties beautifully into our personal life reflection, where each generation in our family represents a fractal layer of these grand cycles.</p>
+<p>It’s poetical and mathematical, mirroring the symmetry in life’s tragedies and triumphs. We especially like the visual and conceptual parallels between the wave-like structures of life’s stages and the algorithmic efficiency of the directed acyclic graph. Join us in the next pages for this odyssey!</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
