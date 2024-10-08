@@ -479,18 +479,232 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">praw</span>
+<span class="kn">from</span> <span class="nn">fpdf</span> <span class="kn">import</span> <span class="n">FPDF</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">FileLink</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Reddit API credentials (fill these in with your own credentials)</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s1">&#39;YOUR_CLIENT_ID&#39;</span>
+<span class="n">client_secret</span> <span class="o">=</span> <span class="s1">&#39;YOUR_CLIENT_SECRET&#39;</span>
+<span class="n">user_agent</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USER_AGENT&#39;</span>
+
+<span class="c1"># Create a Reddit instance</span>
+<span class="n">reddit</span> <span class="o">=</span> <span class="n">praw</span><span class="o">.</span><span class="n">Reddit</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span>
+                     <span class="n">client_secret</span><span class="o">=</span><span class="n">client_secret</span><span class="p">,</span>
+                     <span class="n">user_agent</span><span class="o">=</span><span class="n">user_agent</span><span class="p">)</span>
+
+<span class="c1"># Define the Reddit post URL or ID</span>
+<span class="n">post_id</span> <span class="o">=</span> <span class="s1">&#39;152b7zb&#39;</span>  <span class="c1"># Post ID from the URL</span>
+
+<span class="c1"># Fetch the post</span>
+<span class="n">submission</span> <span class="o">=</span> <span class="n">reddit</span><span class="o">.</span><span class="n">submission</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">post_id</span><span class="p">)</span>
+
+<span class="c1"># Create a PDF object</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">FPDF</span><span class="p">()</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">set_auto_page_break</span><span class="p">(</span><span class="n">auto</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">add_page</span><span class="p">()</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">set_font</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Extract the post title and content</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="n">submission</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">ln</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract the top-level comments</span>
+<span class="n">submission</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">replace_more</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># Ensure all comments are loaded</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">comment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">list</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">comment_text</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">body</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found comment </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">comment_text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>  <span class="c1"># Print first 100 chars for debugging</span>
+    <span class="n">pdf</span><span class="o">.</span><span class="n">multi_cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Comment </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">comment_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save the PDF</span>
+<span class="n">pdf_output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah_reddit_comments.pdf&#39;</span><span class="p">)</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">pdf_output</span><span class="p">)</span>
+
+<span class="c1"># Display the PDF file link in Jupyter</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF summary with comments saved as </span><span class="si">{</span><span class="n">pdf_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">FileLink</span><span class="p">(</span><span class="n">pdf_output</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ResponseException</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">pdf</span><span class="o">.</span><span class="n">set_font</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Extract the post title and content</span>
+<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">pdf</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="n">submission</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">ln</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="c1"># Extract the top-level comments</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">submission</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">replace_more</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># Ensure all comments are loaded</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/praw/models/reddit/base.py:35,</span> in <span class="ni">RedditBase.__getattr__</span><span class="nt">(self, attribute)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Return the value of ``attribute``.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">attribute</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetched</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_fetch</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> object has no attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">!r}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/praw/models/reddit/submission.py:712,</span> in <span class="ni">Submission._fetch</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">def</span> <span class="nf">_fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span>     <span class="n">submission_listing</span><span class="p">,</span> <span class="n">comment_listing</span> <span class="o">=</span> <span class="n">data</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>     <span class="n">comment_listing</span> <span class="o">=</span> <span class="n">Listing</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reddit</span><span class="p">,</span> <span class="n">_data</span><span class="o">=</span><span class="n">comment_listing</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/praw/models/reddit/submission.py:731,</span> in <span class="ni">Submission._fetch_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">729</span> <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_additional_fetch_params</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span> <span class="n">path</span> <span class="o">=</span> <span class="n">API_PATH</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">fields</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">731</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reddit</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/praw/util/deprecate_args.py:43,</span> in <span class="ni">_deprecate_args.&lt;locals&gt;.wrapper.&lt;locals&gt;.wrapped</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">arg_string</span> <span class="o">=</span> <span class="n">_generate_arg_string</span><span class="p">(</span><span class="n">_old_args</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)])</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>         <span class="sa">f</span><span class="s2">&quot;Positional arguments for </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">!r}</span><span class="s2"> will no longer be&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>         <span class="sa">f</span><span class="s2">&quot; supported in PRAW 8.</span><span class="se">\n</span><span class="s2">Call this function with </span><span class="si">{</span><span class="n">arg_string</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>         <span class="ne">DeprecationWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">43</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">_old_args</span><span class="p">,</span> <span class="n">args</span><span class="p">)),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/praw/reddit.py:941,</span> in <span class="ni">Reddit.request</span><span class="nt">(self, data, files, json, method, params, path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">939</span>     <span class="k">raise</span> <span class="n">ClientException</span><span class="p">(</span><span class="s2">&quot;At most one of &#39;data&#39; or &#39;json&#39; is supported.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">940</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">941</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_core</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">942</span>         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">943</span>         <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>         <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>         <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span>         <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span> <span class="k">except</span> <span class="n">BadRequest</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">950</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/sessions.py:328,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, path, data, files, json, params, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">json</span><span class="p">[</span><span class="s2">&quot;api_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_requestor</span><span class="o">.</span><span class="n">oauth_url</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">328</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_with_retries</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>     <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>     <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span>     <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span>     <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>     <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span> <span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/sessions.py:234,</span> in <span class="ni">Session._request_with_retries</span><span class="nt">(self, data, files, json, method, params, timeout, url, retry_strategy_state)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="n">retry_strategy_state</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_request</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">234</span> <span class="n">response</span><span class="p">,</span> <span class="n">saved_exception</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="n">files</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="n">json</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>     <span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span>     <span class="n">retry_strategy_state</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span>     <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span> <span class="n">do_retry</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span> <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">codes</span><span class="p">[</span><span class="s2">&quot;unauthorized&quot;</span><span class="p">]:</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/sessions.py:186,</span> in <span class="ni">Session._make_request</span><span class="nt">(self, data, files, json, method, params, retry_strategy_state, timeout, url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">def</span> <span class="nf">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Response</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">186</span>         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_requestor</span><span class="o">.</span><span class="n">request</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_set_header_callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span>             <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span>             <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span>             <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span>             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>             <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>             <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>             <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span>             <span class="s2">&quot;Response: </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2"> bytes) (rst-</span><span class="si">%s</span><span class="s2">:rem-</span><span class="si">%s</span><span class="s2">:used-</span><span class="si">%s</span><span class="s2"> ratelimit) at </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span>             <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>             <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/rate_limit.py:46,</span> in <span class="ni">RateLimiter.call</span><span class="nt">(self, request_function, set_header_callback, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Rate limit the call to ``request_function``.</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd"> :param request_function: A function call that returns an HTTP response object.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="bp">self</span><span class="o">.</span><span class="n">delay</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">46</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_header_callback</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">response</span> <span class="o">=</span> <span class="n">request_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/sessions.py:282,</span> in <span class="ni">Session._set_header_callback</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span> <span class="k">def</span> <span class="nf">_set_header_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authorizer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_authorizer</span><span class="p">,</span> <span class="s2">&quot;refresh&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">282</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_authorizer</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_authorizer</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/auth.py:378,</span> in <span class="ni">ReadOnlyAuthorizer.refresh</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scopes</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="n">additional_kwargs</span><span class="p">[</span><span class="s2">&quot;scope&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scopes</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">378</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_token</span><span class="p">(</span><span class="n">grant_type</span><span class="o">=</span><span class="s2">&quot;client_credentials&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">additional_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/auth.py:155,</span> in <span class="ni">BaseAuthorizer._request_token</span><span class="nt">(self, **data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span> <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticator</span><span class="o">.</span><span class="n">_requestor</span><span class="o">.</span><span class="n">reddit_url</span> <span class="o">+</span> <span class="n">const</span><span class="o">.</span><span class="n">ACCESS_TOKEN_PATH</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="n">pre_request_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">155</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticator</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span> <span class="k">if</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">:</span>  <span class="c1"># Why are these OKAY responses?</span>
+
+<span class="nn">File ~/Documents/Rhythm/myenv/lib/python3.12/site-packages/prawcore/auth.py:59,</span> in <span class="ni">BaseAuthenticator._post</span><span class="nt">(self, url, success_status, **data)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_requestor</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="s2">&quot;post&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">url</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Connection&quot;</span><span class="p">:</span> <span class="s2">&quot;close&quot;</span><span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="n">success_status</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">raise</span> <span class="n">ResponseException</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">return</span> <span class="n">response</span>
+
+<span class="ne">ResponseException</span>: received 401 HTTP response
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">from</span> <span class="nn">fpdf</span> <span class="kn">import</span> <span class="n">FPDF</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">FileLink</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="c1"># Define the Reddit post URL</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.reddit.com/r/lexfridman/comments/152b7zb/why_so_many_people_dislike_yuval_noah_harary/&#39;</span>
 
 <span class="c1"># Set headers to mimic a browser request (to avoid being blocked by Reddit)</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0&#39;</span><span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36&#39;</span><span class="p">}</span>
 
 <span class="c1"># Fetch the page content</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="c1"># Check if the request was successful</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to fetch the page (status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
 
 <span class="c1"># Create a PDF object</span>
@@ -502,8 +716,8 @@ document.write(`
 <span class="c1"># Extract the post title</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found title: </span><span class="si">{</span><span class="n">title</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">pdf</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="n">title</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">ln</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found title: </span><span class="si">{</span><span class="n">title</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">pdf</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="n">title</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">ln</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Title not found&quot;</span><span class="p">)</span>
     <span class="n">pdf</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="s2">&quot;Title not found&quot;</span><span class="p">,</span> <span class="n">ln</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
@@ -525,23 +739,36 @@ document.write(`
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content not found&quot;</span><span class="p">)</span>
     <span class="n">pdf</span><span class="o">.</span><span class="n">multi_cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="s2">&quot;Content not found&quot;</span><span class="p">)</span>
 
+<span class="c1"># Extract comments (divs containing class &#39;_1qeIAgB0cPwnLhDF9XSiJM&#39; are typically Reddit comments)</span>
+<span class="n">comments</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;_1qeIAgB0cPwnLhDF9XSiJM&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">comments</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">comment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">comments</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">comment_text</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found comment </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">comment_text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>  <span class="c1"># Print first 100 chars for debugging</span>
+        <span class="n">pdf</span><span class="o">.</span><span class="n">multi_cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Comment </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">comment_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No comments found.&quot;</span><span class="p">)</span>
+    <span class="n">pdf</span><span class="o">.</span><span class="n">multi_cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="s2">&quot;No comments found&quot;</span><span class="p">)</span>
+
 <span class="c1"># Save the PDF</span>
-<span class="n">pdf_output</span> <span class="o">=</span> <span class="s1">&#39;/users/apollo/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah.pdf&#39;</span>
+<span class="n">pdf_output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah_comments.pdf&#39;</span><span class="p">)</span>
 <span class="n">pdf</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">pdf_output</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF summary saved as </span><span class="si">{</span><span class="n">pdf_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Display the PDF file link in Jupyter</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PDF summary with comments saved as </span><span class="si">{</span><span class="n">pdf_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">FileLink</span><span class="p">(</span><span class="n">pdf_output</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found title: Why so many people dislike Yuval Noah Harary?
 Found content: 
               Discussion of science, technology, philosophy, history, politics, music, art, etc. Fo...
-PDF summary saved as /users/apollo/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah.pdf
+No comments found.
+PDF summary with comments saved as /Users/apollo/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah_comments.pdf
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><a href='/Users/apollo/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah_comments.pdf' target='_blank'>/Users/apollo/Documents/Rhythm/philosophy/kitabo/ensi/pdfs/noah_comments.pdf</a><br></div></div>
 </div>
 <iframe src="../../pdfs/noah.pdf" width="100%" height="500px"></iframe>
 <p>He kinda falls in the Malcolm Gladwell bucket for me - his writing seems well researched and thought out until he starts talking about something you know about, and then everything he says is incredibly speculative, misleading, and unfounded.</p>
