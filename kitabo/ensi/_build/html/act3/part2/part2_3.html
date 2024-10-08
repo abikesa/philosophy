@@ -2306,10 +2306,87 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
 <section id="id51">
 <h2>50<a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h2>
 <div class="danger admonition">
-<p class="admonition-title">Coming</p>
-<p>Coming</p>
+<p class="admonition-title">Relationships</p>
+<p>“You may be wondering why I should actually have related all these trivial and, according to traditional accounts, insignificant details to you; such action can but tell against me, more particularly if I am fated to figure in great causes. To this I reply that these trivial matters—diet, locality, climate, and one’s mode of recreation, the whole casuistry of; self-love—are inconceivably more important than, all that which has hitherto been held in high esteem! It is precisely in this quarter that we must begin to learn afresh. All those things which mankind has valued with such earnestness heretofore are not even real; they are mere creations of fancy, or, more strictly speaking, lies born of the evil instincts of diseased and, in the deepest sense, noxious natures—all the concepts, “God,” “soul,” “virtue,” “sin,” “Beyond,” “truth,” “eternal life.” …” –</p>
+<p>Excerpt From
+Ecce Homo: Why I am So Clever
+Friedrich Nietzsche
+<a class="reference external" href="https://books.apple.com/us/book/ecce-homo/id1369792621">https://books.apple.com/us/book/ecce-homo/id1369792621</a></p>
 </div>
-<p>Coming</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draws a triangle given vertices and labels for each vertex with matching color.&quot;&quot;&quot;</span>
+    <span class="n">triangle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># Set label color</span>
+
+<span class="k">def</span> <span class="nf">get_triangle_vertices_3d</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">perspective_scale</span><span class="p">,</span> <span class="n">tilt</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the vertices of a tilted equilateral triangle for a 3D effect.</span>
+<span class="sd">    `perspective_scale` shrinks the triangle to simulate depth.</span>
+<span class="sd">    `tilt` applies a slight rotation for perspective effect.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>  <span class="c1"># angles for vertices of an equilateral triangle</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">perspective_scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span> <span class="o">+</span> <span class="n">tilt</span><span class="p">),</span>
+                                <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">perspective_scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span> <span class="o">+</span> <span class="n">tilt</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">vertices</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define the layers of the fractal with vertices and labels</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">triads</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Diet&#39;</span><span class="p">,</span> <span class="s1">&#39;Geography       &#39;</span><span class="p">,</span> <span class="s1">&#39;           Climate&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Friendship&#39;</span><span class="p">,</span> <span class="s1">&#39;Character&#39;</span><span class="p">,</span> <span class="s1">&#39;Ethics&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Trust&#39;</span><span class="p">,</span> <span class="s1">&#39;Love&#39;</span><span class="p">,</span> <span class="s1">&#39;Hope&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Set the color scheme: blood red, green, sky blue</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3D perspective parameters: smaller scale as the fractal moves inward (simulating depth)</span>
+<span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># simulate depth</span>
+<span class="n">tilts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">]</span>  <span class="c1"># slight rotation for perspective</span>
+
+<span class="c1"># Draw the triangles with increasing radius and perspective scaling</span>
+<span class="k">for</span> <span class="n">radius</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">tilt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">radii</span><span class="p">,</span> <span class="n">triads</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">scales</span><span class="p">,</span> <span class="n">tilts</span><span class="p">):</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">get_triangle_vertices_3d</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">tilt</span><span class="p">)</span>
+    <span class="n">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="c1"># Set limits and hide axes to fit the frame</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../_images/bd9862fb165d94694decbebe5219feab18e8b434a39b37de728dd5bf3dab7e4a.png" src="../../_images/bd9862fb165d94694decbebe5219feab18e8b434a39b37de728dd5bf3dab7e4a.png" />
+</div>
+</div>
+<figure class="align-default" id="id57">
+<a class="reference internal image-reference" href="../../_images/blanche.png"><img alt="../../_images/blanche.png" src="../../_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 47 </span><span class="caption-text"><em>Scope of Relationships: Self, Neighbor, God</em>. This is the foundation of all need for information that will be developed using our “neurone” modal.</span><a class="headerlink" href="#id57" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
