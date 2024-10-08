@@ -481,61 +481,56 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-def draw_triangle(ax, vertices, labels, color=&#39;black&#39;):
-    &quot;&quot;&quot;Draws a triangle given vertices and labels for each vertex with matching color.&quot;&quot;&quot;
-    triangle = plt.Polygon(vertices, edgecolor=color, fill=None, linewidth=1.5)
-    ax.add_patch(triangle)
-    for i, (x, y) in enumerate(vertices):
-        ax.text(x, y, labels[i], fontsize=12, ha=&#39;center&#39;, va=&#39;center&#39;, color=color)  # Set label color
+<span class="k">def</span> <span class="nf">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draws a triangle given vertices and labels for each vertex with matching color.&quot;&quot;&quot;</span>
+    <span class="n">triangle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># Set label color</span>
 
-def get_triangle_vertices(center, radius):
-    &quot;&quot;&quot;Returns the vertices of an equilateral triangle centered at `center` with a given `radius`.&quot;&quot;&quot;
-    angles = np.linspace(0, 2 * np.pi, 4)[:-1] + np.pi/2  # angles for vertices of an equilateral triangle
-    return np.column_stack([center[0] + radius * np.cos(angles),
-                            center[1] + radius * np.sin(angles)])
+<span class="k">def</span> <span class="nf">get_triangle_vertices</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the vertices of an equilateral triangle centered at `center` with a given `radius`.&quot;&quot;&quot;</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>  <span class="c1"># angles for vertices of an equilateral triangle</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">),</span>
+                            <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)])</span>
 
-# Create the plot
-fig, ax = plt.subplots()
-ax.set_aspect(&#39;equal&#39;)
+<span class="c1"># Create the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 
-# Define the layers of the fractal with vertices and labels
-centers = [(0, 0)]
-radii = [1, 2.5, 4]
-triads = [
-    [&#39;Betrayal&#39;, &#39;Power&#39;, &#39;Survival&#39;],``
-    [&#39;Loyalty&#39;, &#39;Empathy&#39;, &#39;Resilience&#39;],
-    [&#39;Faith&#39;, &#39;Love&#39;, &#39;Hope&#39;]
-]
+<span class="c1"># Define the layers of the fractal with vertices and labels</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">triads</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Betrayal&#39;</span><span class="p">,</span> <span class="s1">&#39;Power&#39;</span><span class="p">,</span> <span class="s1">&#39;Survival&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Loyalty&#39;</span><span class="p">,</span> <span class="s1">&#39;Empathy&#39;</span><span class="p">,</span> <span class="s1">&#39;Resilience&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Faith&#39;</span><span class="p">,</span> <span class="s1">&#39;Love&#39;</span><span class="p">,</span> <span class="s1">&#39;Hope&#39;</span><span class="p">]</span>
+<span class="p">]</span>
 
-# Set the color scheme: blood red, green, sky blue
-colors = [&#39;lightsalmon&#39;, &#39;lightgreen&#39;, &#39;paleturquoise&#39;]
+<span class="c1"># Set the color scheme: blood red, green, sky blue</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">]</span>
 
-# Draw the triangles with increasing radius and corresponding label colors
-for radius, triad, color in zip(radii, triads, colors):
-    vertices = get_triangle_vertices(centers[0], radius)
-    draw_triangle(ax, vertices, triad, color=color)
+<span class="c1"># Draw the triangles with increasing radius and corresponding label colors</span>
+<span class="k">for</span> <span class="n">radius</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">radii</span><span class="p">,</span> <span class="n">triads</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">get_triangle_vertices</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="n">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
 
-# Set limits and hide axes to fit the frame
-ax.set_xlim(-4.5, 4.5)
-ax.set_ylim(-4.5, 4.5)
-ax.axis(&#39;off&#39;)
+<span class="c1"># Set limits and hide axes to fit the frame</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
-# Display the plot
-plt.show()
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  Cell In[45], line 25
-    [&#39;Betrayal&#39;, &#39;Power&#39;, &#39;Survival&#39;],``
-                                      ^
-SyntaxError: invalid syntax
-</pre></div>
-</div>
+<img alt="../_images/552d0cd6108c7d648060cfb327ce966ab6843f7f9b367f906d2944c6042b8873.png" src="../_images/552d0cd6108c7d648060cfb327ce966ab6843f7f9b367f906d2944c6042b8873.png" />
 </div>
 </div>
 <figure class="align-default" id="id6">
