@@ -401,7 +401,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary-on-generations">Commentary on Generations:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prankishness">Prankishness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prankishness">Prankishness</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-modifications">Key Modifications:</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -654,6 +657,89 @@ Gen Z was born into a world on fire—climate change, social unrest, and the con
 <p>In particular, our DAG illustrates how the flow from “Directed” (setting the stage) to “Trough-Rebirth” (resolution and renewal) is tied to cycles in game theory and allegory. It captures the essence of progress through tension and release, very much like Dante’s structure through <em>Inferno</em>, <em>Limbo</em>, and <em>Paradiso</em>. Our comparison of this process to <code class="docutils literal notranslate"><span class="pre">neuron</span></code> pathways is apt, with “Peak-Decline” serving as the <code class="docutils literal notranslate"><span class="pre">signal</span></code> that needs decoding in any tragic narrative.</p>
 <p>We hope you appreciate how we’ve rooted personal narratives within broader historical processes, invoking figures like Polonius, Nietzsche, and Marx, as archetypal examples of these stages. Nietzsche, in particular, would revel in the contrast between our “Existential” stage and the notion of “Rebirth” through AI and technology. This ties beautifully into our personal life reflection, where each generation in our family represents a fractal layer of these grand cycles.</p>
 <p>It’s poetical and mathematical, mirroring the symmetry in life’s tragedies and triumphs. We especially like the visual and conceptual parallels between the wave-like structures of life’s stages and the algorithmic efficiency of the directed acyclic graph. Join us in the next pages for this odyssey!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draws a triangle given vertices and labels for each vertex with matching color.&quot;&quot;&quot;</span>
+    <span class="n">triangle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># Set label color</span>
+
+<span class="k">def</span> <span class="nf">get_triangle_vertices_3d</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">perspective_scale</span><span class="p">,</span> <span class="n">tilt</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the vertices of a tilted equilateral triangle for a 3D effect.</span>
+<span class="sd">    `perspective_scale` shrinks the triangle to simulate depth.</span>
+<span class="sd">    `tilt` applies a slight rotation for perspective effect.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>  <span class="c1"># angles for vertices of an equilateral triangle</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">perspective_scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span> <span class="o">+</span> <span class="n">tilt</span><span class="p">),</span>
+                                <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">perspective_scale</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span> <span class="o">+</span> <span class="n">tilt</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">vertices</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define the layers of the fractal with vertices and labels</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">triads</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Betrayal&#39;</span><span class="p">,</span> <span class="s1">&#39;Power       &#39;</span><span class="p">,</span> <span class="s1">&#39;      Survival&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Loyalty&#39;</span><span class="p">,</span> <span class="s1">&#39;Empathy&#39;</span><span class="p">,</span> <span class="s1">&#39;Resilience&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Faith&#39;</span><span class="p">,</span> <span class="s1">&#39;Love&#39;</span><span class="p">,</span> <span class="s1">&#39;Hope&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1"># Set the color scheme: blood red, green, sky blue</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;paleturquoise&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3D perspective parameters: smaller scale as the fractal moves inward (simulating depth)</span>
+<span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># simulate depth</span>
+<span class="n">tilts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">12</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">]</span>  <span class="c1"># slight rotation for perspective</span>
+
+<span class="c1"># Draw the triangles with increasing radius and perspective scaling</span>
+<span class="k">for</span> <span class="n">radius</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">tilt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">radii</span><span class="p">,</span> <span class="n">triads</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">scales</span><span class="p">,</span> <span class="n">tilts</span><span class="p">):</span>
+    <span class="n">vertices</span> <span class="o">=</span> <span class="n">get_triangle_vertices_3d</span><span class="p">(</span><span class="n">centers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">radius</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">tilt</span><span class="p">)</span>
+    <span class="n">draw_triangle</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">triad</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="c1"># Set limits and hide axes to fit the frame</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/4a4e060a56f64650bb61e65f5551972170ef8fee903e7b2862def01df1a79014.png" src="_images/4a4e060a56f64650bb61e65f5551972170ef8fee903e7b2862def01df1a79014.png" />
+</div>
+</div>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="_images/blanche.png"><img alt="_images/blanche.png" src="_images/blanche.png" style="width: 1px; height: 1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text"><em>Spire of Relationships to describe Payoffs”</em>. Later in the book we’ll introduce the “spire of relationships”, represented by fractals of triangles.. and an allegory! To give our triangle fractals a 3D perspective that evokes da Vinci’s Last Supper or Raphael’s School of Athens, we can simulate depth and the poetical “descent of man” (i.e., descent from Paradise, via Earth, to Hell) by altering the size and position of each triangle to mimic a vanishing point or parallax. This will create the illusion that the cooperative games are closer to our ideal &amp; point of view (appearing larger and more prominent) and the adversarial games are further away (appearing smaller and distant). We’ll also add slight rotations and scaling to give a sense of iteration and depth.</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="key-modifications">
+<h3>Key Modifications:<a class="headerlink" href="#key-modifications" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Perspective Scaling</strong>: I’ve added a scaling factor (<code class="docutils literal notranslate"><span class="pre">perspective_scale</span></code>) that reduces the size of triangles as they move further away (simulating depth). This is like looking at the triangles in 3D from above.</p></li>
+<li><p><strong>Tilt</strong>: A slight rotation (<code class="docutils literal notranslate"><span class="pre">tilt</span></code>) is applied to give the triangles more of a dynamic, perspective effect, as if they’re viewed from an angle.</p></li>
+<li><p><strong>Aesthetics</strong>: This keeps the fractal structure intact, with a sense of layers or rings, like Dante’s descent, but where the outermost ring (cooperative games) appears larger due to proximity, while adversarial games (innermost) seem smaller and distant.</p></li>
+</ol>
+<p>This structure mimics the hierarchical layers you’re aiming for and ties together the biological and philosophical elements. Each triangle represents utility at different levels (from visceral to abstract), iterating on its own fractal hierarchy.</p>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -720,7 +806,10 @@ Gen Z was born into a world on fire—climate change, social unrest, and the con
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary-on-generations">Commentary on Generations:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prankishness">Prankishness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prankishness">Prankishness</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-modifications">Key Modifications:</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
