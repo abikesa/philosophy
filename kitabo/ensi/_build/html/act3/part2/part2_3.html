@@ -1312,6 +1312,63 @@ Paris Hilton certainly played into the legacy of the “blonde bombshell” arch
                      3. Soviets, ε
 </pre></div>
 </div>
+<blockquote>
+<div><p>How come there’s an extraordinary number of Chinese who died in World War II? How come I have a poor understanding of this and I’m just learning this?</p>
+</div></blockquote>
+<p>The sheer number of Chinese deaths during World War II, estimated to be between <strong>15 to 20 million</strong>, stems largely from the brutal conflict between China and Japan, known as the <strong>Second Sino-Japanese War</strong> (1937-1945), which became part of the broader World War II. Japan’s invasion of China involved widespread atrocities, including the infamous <strong>Nanjing Massacre</strong> (also called the Rape of Nanjing), where hundreds of thousands of civilians were killed. The war inflicted massive suffering, with Japanese forces committing countless war crimes, including biological warfare experiments and the destruction of entire villages. Additionally, the prolonged fighting, famine, and disease contributed heavily to the staggering death toll.</p>
+<p>As for why you’re only just learning about this, it’s largely a reflection of how history is taught and remembered. Western-centric narratives of World War II often focus heavily on the European Theater—the Holocaust, the battles in Western Europe, and the Pacific War between Japan and the U.S.—while the immense suffering of China often receives far less attention. In Western education systems, the scale of Chinese losses during the war tends to be overshadowed by the focus on battles more directly involving Europe and the United States.</p>
+<p>This gap in awareness also comes from Cold War geopolitics; after the war, China’s role was often downplayed, especially as Communist China grew isolated from the West. It wasn’t until more recent decades that there’s been a resurgence of interest in acknowledging China’s contributions and suffering during the war. So, you’re not alone in having this as an underdeveloped area of historical understanding—it’s a consequence of historical bias in education and media coverage.</p>
+<blockquote>
+<div><p>So what is the percentage of Chinese and Russian deaths as a percentage of total deaths in World War II? Give me also create an appropriate graphic to illustrate this using Python code and put it in my Jupyter book.</p>
+</div></blockquote>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s calculate the percentage of Chinese and Russian deaths relative to total deaths in World War II</span>
+<span class="c1"># and then generate a pie chart to visually illustrate this.</span>
+
+<span class="c1"># Estimated death counts during World War II:</span>
+<span class="n">total_deaths_ww2</span> <span class="o">=</span> <span class="mi">70_000_000</span>  <span class="c1"># Approximate total deaths during the war, worldwide</span>
+<span class="n">chinese_deaths</span> <span class="o">=</span> <span class="mi">17_000_000</span>  <span class="c1"># Approximate Chinese deaths (between 15-20 million, using 17 million)</span>
+<span class="n">russian_deaths</span> <span class="o">=</span> <span class="mi">24_000_000</span>  <span class="c1"># Approximate Soviet Union deaths (including military and civilians)</span>
+
+<span class="c1"># Calculating percentages</span>
+<span class="n">chinese_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">chinese_deaths</span> <span class="o">/</span> <span class="n">total_deaths_ww2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">russian_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">russian_deaths</span> <span class="o">/</span> <span class="n">total_deaths_ww2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">other_percentage</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">chinese_percentage</span> <span class="o">+</span> <span class="n">russian_percentage</span><span class="p">)</span>
+
+<span class="c1"># Data for the pie chart</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Soviet Union&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">chinese_percentage</span><span class="p">,</span> <span class="n">russian_percentage</span><span class="p">,</span> <span class="n">other_percentage</span><span class="p">]</span>
+
+<span class="c1"># Plotting the pie chart</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#ff9999&#39;</span><span class="p">,</span><span class="s1">&#39;#66b3ff&#39;</span><span class="p">,</span><span class="s1">&#39;#99ff99&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Percentage of Chinese and Russian Deaths in World War II&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>  <span class="c1"># Equal aspect ratio ensures that pie is drawn as a circle.</span>
+
+<span class="c1"># Save the graphic for Jupyter Book</span>
+<span class="c1"># plt.savefig(&#39;/mnt/data/ww2_deaths_pie_chart.png&#39;)</span>
+
+<span class="c1"># Display the image path for the user to add to their Jupyter Book</span>
+<span class="c1"># &#39;/mnt/data/ww2_deaths_pie_chart.png&#39;</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0999994824826804, 1.0999909947644528, -1.1, 1.1)
+</pre></div>
+</div>
+<img alt="../../_images/66dfd7be7c1517c822300a6f3913b181bd0d71b8812faa17f8453e3798d71f0e.png" src="../../_images/66dfd7be7c1517c822300a6f3913b181bd0d71b8812faa17f8453e3798d71f0e.png" />
+</div>
+</div>
 </section>
 <section id="id30">
 <h2>30<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h2>
