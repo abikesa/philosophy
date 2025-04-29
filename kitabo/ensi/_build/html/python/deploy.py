@@ -36,7 +36,8 @@ def main(commit_message, git_remote, ghp_remote):
     # Get current branch
     current_branch = run("git rev-parse --abbrev-ref HEAD", capture_output=True).strip()
     git_branch = click.prompt("🌿 Enter the Git branch to push to", default=current_branch, show_default=True)
-    # 🔥 NEW: Check for mismatch between active branch and branch to push
+
+    # 🔥 Check for mismatch between active branch and branch to push
     if current_branch != git_branch:
         click.secho(f"⚠️  You are on branch '{current_branch}', but you are trying to push '{git_branch}'.", fg="yellow")
         proceed = click.confirm("Continue anyway?", default=False)
@@ -111,12 +112,15 @@ def main(commit_message, git_remote, ghp_remote):
                 else:
                     shutil.copy2(s, d_)
 
-    # Plant flicks
+    # 🌿 Plant flicks if available
     click.secho("🌿 Planting flicks...", fg="cyan")
-    try:
-        run("python python/plant_flicks_frac.py --percent 23")
-    except Exception as e:
-        click.secho(f"⚠️ Flick planting failed: {e}", fg="yellow")
+    if os.path.exists("python/plant_flicks_frac.py"):
+        try:
+            run("python python/plant_flicks_frac.py --percent 23")
+        except Exception as e:
+            click.secho(f"⚠️ Flick planting failed: {e}", fg="yellow")
+    else:
+        click.secho("✅ No flicks planted (plant_flicks_frac.py not found). Skipping.", fg="green")
 
     # Stage and commit
     click.secho("🧾 Staging changes...", fg="cyan")
@@ -144,7 +148,22 @@ def main(commit_message, git_remote, ghp_remote):
         run(f"git push -u {git_remote} {git_branch}")
 
     click.secho(f"⬆️ Pushing to {git_remote}/{git_branch}...", fg="cyan")
-    run(f"git push {git_remote} {git_branch}")
+    try:
+        run(f"git push {git_remote} {git_branch}")
+    except subprocess.CalledProcessError:
+        click.secho("❌ Push failed: Non-fast-forward or other issue.", fg="red")
+        retry = click.confirm("🛠️ Attempt to pull, rebase, and retry push?", default=True)
+        if retry:
+            try:
+                run(f"git pull --rebase {git_remote} {git_branch}")
+                run(f"git push {git_remote} {git_branch}")
+                click.secho("✅ Push succeeded after rebase.", fg="green")
+            except subprocess.CalledProcessError:
+                click.secho("🚨 Automatic rebase and push failed. Please resolve manually.", fg="red")
+                sys.exit(1)
+        else:
+            click.secho("🛑 Push aborted. Manual intervention required.", fg="yellow")
+            sys.exit(1)
 
     # Handle gh-pages
     click.secho("🌐 Checking for 'gh-pages' branch...", fg="cyan")
