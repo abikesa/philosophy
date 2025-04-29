@@ -450,8 +450,8 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Create a directed graph (DAG)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -600,8 +600,8 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Create a directed graph (DAG)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -647,9 +647,9 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate payoffs based on sharing of total resources.</span>
 <span class="sd">    Cooperation leads to an even split, defection allows one to take a larger share.</span>
@@ -801,10 +801,10 @@ M = \begin{bmatrix}
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># grok-2 to the rescue!</span>
-<span class="k">def</span> <span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">resource_based_payoff</span><span class="p">(</span><span class="n">total_resources</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">defect_share</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">inefficiency</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
     <span class="n">cooperate_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="n">cooperate_defect</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">defect_share</span><span class="p">)</span>
     <span class="n">defect_cooperate</span> <span class="o">=</span> <span class="n">total_resources</span> <span class="o">*</span> <span class="n">defect_share</span>
@@ -816,7 +816,7 @@ M = \begin{bmatrix}
                                  <span class="p">[</span><span class="n">cooperate_defect</span><span class="p">,</span> <span class="n">defect_defect</span><span class="p">]])</span>
     <span class="k">return</span> <span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span>
 
-<span class="k">def</span> <span class="nf">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">repeated_game</span><span class="p">(</span><span class="n">payoff_matrix_p1</span><span class="p">,</span> <span class="n">payoff_matrix_p2</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
     <span class="n">player1_strategy</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">player2_strategy</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">player1_payoff_history</span> <span class="o">=</span> <span class="p">[]</span>
